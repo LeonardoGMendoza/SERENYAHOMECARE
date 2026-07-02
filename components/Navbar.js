@@ -5,7 +5,7 @@ import styles from '../styles/Navbar.module.css';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const waLink = "https://wa.me/5511974995342?text=Olá!%20Vim%20pelo%20site%20da%20Serenya%20e%20gostaria%20de%20mais%20informações.";
+  const waLink = "https://wa.me/5511989553812?text=Olá!%20Vim%20pelo%20site%20da%20Serenya%20e%20gostaria%20de%20mais%20informações.";
 
   return (
     <header className={styles.header}>

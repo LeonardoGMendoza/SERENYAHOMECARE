@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import styles from './page.module.css';
 
-const WA_LINK = "https://wa.me/5511974995342?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
+const WA_LINK = "https://wa.me/5511989553812?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
 
 const services = [
   { icon: '👵', title: 'Cuidador de Idosos', desc: 'Assistência diária, controle de medicações, auxílio na mobilidade e higiene com amor e respeito.' },
@@ -148,7 +148,7 @@ export default function Home() {
                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
               </svg>
               <span>WhatsApp</span>
-              <span className={styles.socialHandle}>(11) 97499-5342</span>
+              <span className={styles.socialHandle}>(11) 98955-3812</span>
             </a>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function Home() {
               <div className={styles.contactIcon}>💬</div>
               <h3>WhatsApp</h3>
               <p>Resposta em até 1 hora</p>
-              <Link href={WA_LINK} target="_blank" className="btn btn-wa btn-sm">(11) 97499-5342</Link>
+              <Link href={WA_LINK} target="_blank" className="btn btn-wa btn-sm">(11) 98955-3812</Link>
             </div>
             <div className={styles.contactCard}>
               <div className={styles.contactIcon}>📍</div>
@@ -227,7 +227,7 @@ export default function Home() {
             </div>
             <div className={styles.footerCol}>
               <h4>Contato</h4>
-              <p>WhatsApp: (11) 97499-5342</p>
+              <p>WhatsApp: (11) 98955-3812</p>
               <p>Instagram: @cuidadosserenya</p>
             </div>
           </div>

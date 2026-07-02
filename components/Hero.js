@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from '../styles/Hero.module.css';
 
 export default function Hero() {
-  const waLink = "https://wa.me/5511974995342?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
+  const waLink = "https://wa.me/5511989553812?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
 
   return (
     <section className={styles.hero}>
