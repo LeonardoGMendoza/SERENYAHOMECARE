@@ -9,6 +9,9 @@ const inter = Inter({
 export const metadata = {
   title: "Serenya Home Care | Cuidamos de vidas, acolhemos histórias",
   description: "Atendimento Domiciliar Especializado para Crianças, Idosos e Pessoas com Necessidades Especiais. Plantões 12h, 24h e Cuidados Paliativos.",
+  icons: {
+    icon: "/serenya-logo.jpg",
+  },
 };
 
 export default function RootLayout({ children }) {
