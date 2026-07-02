@@ -1,108 +1,75 @@
+/* ===== HERO ===== */
 .hero {
-  position: relative;
-  background-color: var(--beige);
-  padding: 120px 20px 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #fff5f9 0%, #ffffff 50%, #f3fbf4 100%);
+  padding: 120px 0 80px;
 }
-
-/* Decorative background element */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -100px;
-  right: -100px;
-  width: 400px;
-  height: 400px;
-  background-color: var(--sage-green-light);
+.heroBg {
+  position: absolute; inset: 0; z-index: 0;
+}
+.heroGlow {
+  position: absolute; top: 20%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(217,79,138,0.07) 0%, rgba(74,140,82,0.04) 50%, transparent 70%);
   border-radius: 50%;
-  opacity: 0.2;
-  z-index: 0;
+  pointer-events: none;
 }
-
-.content {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
+.heroContent {
+  position: relative; z-index: 1;
+  max-width: 680px;
 }
-
-.title {
-  font-size: 3rem;
-  color: var(--sage-green-dark);
+.heroBadge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(217,79,138,0.1);
+  color: var(--pink-light);
+  border: 1px solid rgba(217,79,138,0.25);
+  padding: 6px 14px; border-radius: 20px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
   margin-bottom: 24px;
-  font-weight: 700;
-  line-height: 1.1;
 }
-
-.subtitle {
-  font-size: 1.25rem;
-  color: var(--gray-dark);
-  margin-bottom: 40px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+.heroTitle {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 900; line-height: 1.08;
+  color: var(--text-primary);
+  margin-bottom: 22px;
 }
-
-.ctaContainer {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+.heroSub {
+  font-size: 1.15rem; color: var(--text-secondary);
+  max-width: 560px; margin-bottom: 40px; line-height: 1.7;
 }
-
-.primaryBtn {
-  background-color: var(--sage-green);
-  color: var(--white);
-  padding: 16px 32px;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  box-shadow: var(--box-shadow);
+.heroActions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 50px; }
+.heroStats {
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
 }
-
-.primaryBtn:hover {
-  background-color: var(--sage-green-dark);
-  transform: translateY(-2px);
+.heroStat { text-align: center; }
+.heroStatNum {
+  display: block; font-size: 1.8rem; font-weight: 800; color: var(--text-primary);
 }
+.heroStatLabel { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+.heroStatDivider { width: 1px; height: 40px; background: var(--border); }
 
-.secondaryBtn {
-  background-color: transparent;
-  color: var(--sage-green-dark);
-  border: 2px solid var(--sage-green);
-  padding: 14px 32px;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 1.1rem;
+/* HERO VISUAL SIDE */
+.heroVisual {
+  position: relative; z-index: 1;
+  display: flex; justify-content: center; align-items: center;
 }
-
-.secondaryBtn:hover {
-  background-color: rgba(113, 141, 120, 0.1);
+.heroImgWrap {
+  position: relative; border-radius: var(--radius); overflow: hidden;
+  width: 100%; max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 0 40px var(--pink-glow);
+  border: 1px solid rgba(217,79,138,0.15);
 }
+.heroImgWrap img { width: 100%; height: 420px; object-fit: cover; }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .hero {
-    padding: 100px 20px 60px;
-  }
-  
-  .title {
-    font-size: 2.2rem;
-  }
-
-  .subtitle {
-    font-size: 1.1rem;
-  }
-
-  .ctaContainer {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0 20px;
-  }
-  
-  .primaryBtn, .secondaryBtn {
-    width: 100%;
-  }
+.heroRow {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+@media (max-width: 900px) {
+  .heroRow { grid-template-columns: 1fr; }
+  .heroVisual { order: -1; }
+  .heroImgWrap img { height: 300px; }
+  .heroActions { flex-direction: column; }
 }

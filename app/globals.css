@@ -1,32 +1,57 @@
+/* =========================================
+   SERENYA HOME CARE — Design System Premium
+   Cores da Marca: Rosa + Verde Folha
+   Glassmorphism — Fundo CLARO/BRANCO
+   ========================================= */
 :root {
-  /* Brand Colors */
-  --sage-green: #718d78;
-  --sage-green-dark: #4a6351;
-  --sage-green-light: #94b39c;
-  --beige: #f6efe6;
-  --beige-dark: #e1d3bc;
-  
-  /* Neutral Colors */
-  --white: #ffffff;
-  --black: #1a1a1a;
-  --gray-dark: #333333;
-  --gray-light: #888888;
-  --bg-color: #faf9f6;
+  /* Brand Colors — extraídas do logo */
+  --pink: #D94F8A;
+  --pink-dark: #B03570;
+  --pink-light: #e8679e;
+  --pink-glow: rgba(217, 79, 138, 0.25);
 
-  /* Typography */
-  --font-main: 'Inter', sans-serif;
-  
-  /* Utilities */
-  --border-radius: 12px;
-  --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --green: #4a8c52;
+  --green-dark: #2e6335;
+  --green-light: #5fa869;
+  --green-glow: rgba(74, 140, 82, 0.2);
+
+  /* Gradient da Marca */
+  --brand-gradient: linear-gradient(135deg, #D94F8A 0%, #8b5e8a 50%, #4a8c52 100%);
+
+  /* Background CLARO */
+  --bg-base: #ffffff;
+  --bg-surface: #fdf5f8;
+  --bg-alt: #f7fdf8;
+  --bg-card: rgba(255, 255, 255, 0.75);
+
+  /* Text */
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+
+  /* Borders */
+  --border: rgba(217, 79, 138, 0.18);
+  --border-green: rgba(74, 140, 82, 0.18);
+  --border-light: rgba(0, 0, 0, 0.07);
+
+  /* Shadows */
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-pink: 0 8px 32px var(--pink-glow);
+  --shadow-green: 0 8px 32px var(--green-glow);
+
+  /* Social */
+  --insta-pink: #E1306C;
+  --fb-blue: #1877F2;
+  --wa-green: #25D366;
+
+  /* Misc */
+  --radius: 16px;
+  --radius-sm: 10px;
   --transition: all 0.3s ease;
+  --font: 'Inter', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+* { box-sizing: border-box; padding: 0; margin: 0; }
 
 html, body {
   max-width: 100vw;
@@ -35,52 +60,109 @@ html, body {
 }
 
 body {
-  font-family: var(--font-main);
-  background-color: var(--bg-color);
-  color: var(--gray-dark);
+  font-family: var(--font);
+  background: var(--bg-base);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: var(--transition);
+a { color: inherit; text-decoration: none; transition: var(--transition); }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ── GLASS (sobre fundo claro) ── */
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(217, 79, 138, 0.12);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--sage-green-dark);
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
-
-/* Utility Classes */
+/* ── CONTAINER ── */
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
-.section {
-  padding: 80px 0;
+/* ── SECTION ── */
+.section { padding: 100px 0; }
+.section-alt { background: var(--bg-surface); }
+.section-alt-green { background: var(--bg-alt); }
+
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(217, 79, 138, 0.08);
+  color: var(--pink-dark);
+  border: 1px solid rgba(217, 79, 138, 0.2);
+  padding: 6px 14px; border-radius: 20px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
-.text-center {
-  text-align: center;
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800; color: var(--text-primary);
+  margin-bottom: 16px; line-height: 1.15;
 }
 
-/* Mobile Adjustments for utility classes */
-@media (max-width: 768px) {
-  .section {
-    padding: 60px 0;
-  }
+.section-sub {
+  color: var(--text-secondary); font-size: 1.1rem;
+  max-width: 580px; margin: 0 auto 60px;
 }
+
+.text-center { text-align: center; }
+
+.gradient-text {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: 30px;
+  font-weight: 600; font-size: 0.95rem;
+  transition: var(--transition);
+}
+.btn-primary {
+  background: var(--brand-gradient);
+  color: white;
+  box-shadow: 0 4px 18px var(--pink-glow);
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 28px var(--pink-glow); }
+
+.btn-green {
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: white;
+  box-shadow: 0 4px 15px var(--green-glow);
+}
+.btn-green:hover { opacity: 0.9; transform: translateY(-2px); }
+
+.btn-outline {
+  border: 1.5px solid var(--pink);
+  color: var(--pink-dark);
+  background: transparent;
+}
+.btn-outline:hover { background: rgba(217, 79, 138, 0.06); }
+
+.btn-outline-green {
+  border: 1.5px solid var(--green);
+  color: var(--green-dark);
+  background: transparent;
+}
+.btn-outline-green:hover { background: rgba(74, 140, 82, 0.06); }
+
+.btn-wa { background: var(--wa-green); color: white; box-shadow: 0 4px 15px rgba(37,211,102,0.25); }
+.btn-wa:hover { opacity: 0.9; transform: translateY(-2px); }
+
+.btn-lg { padding: 16px 36px; font-size: 1.05rem; }
+.btn-sm { padding: 8px 18px; font-size: 0.88rem; }
+
+@media (max-width: 768px) { .section { padding: 70px 0; } }

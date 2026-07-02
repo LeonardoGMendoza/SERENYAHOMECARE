@@ -1,13 +1,60 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
+// prisma/schema.prisma
 generator client {
-  provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+model Paciente {
+  id           Int      @id @default(autoincrement())
+  nome         String
+  telefone     String?
+  endereco     String?
+  diagnostico  String?
+  status       String   @default("Ativo")
+  plano        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Profissional {
+  id         Int      @id @default(autoincrement())
+  nome       String
+  telefone   String?
+  cargo      String
+  status     String   @default("Ativo")
+  documento  String?
+  createdAt  DateTime @default(now())
+}
+
+model Lead {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  telefone  String
+  origem    String?
+  interesse String?
+  status    String   @default("Novo")
+  createdAt DateTime @default(now())
+}
+
+model Atendimento {
+  id          Int      @id @default(autoincrement())
+  pacienteId  Int
+  profissionalId Int
+  data        DateTime
+  tipo        String
+  observacoes String?
+  createdAt   DateTime @default(now())
 }

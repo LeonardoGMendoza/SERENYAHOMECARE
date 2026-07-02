@@ -1,76 +1,53 @@
+/* ================== NAVBAR ================== */
 .header {
-  width: 100%;
-  background-color: var(--white);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(217,79,138,0.12);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.05);
 }
-
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
+  display: flex; justify-content: space-between; align-items: center;
+  height: 72px;
 }
+.logo { display: flex; align-items: center; gap: 12px; font-size: 1.1rem; font-weight: 800; color: var(--text-primary); }
+.logo img { height: 38px; width: 38px; border-radius: 50%; object-fit: cover; }
+.logo span { color: var(--pink); }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--sage-green-dark);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logo span {
-  color: var(--sage-green);
-}
-
-.menu {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-}
-
-.menuItem a {
-  font-weight: 500;
-  color: var(--gray-dark);
-}
-
-.menuItem a:hover {
-  color: var(--sage-green);
-}
+.menu { display: flex; gap: 32px; list-style: none; }
+.menu a { color: var(--text-secondary); font-size: 14px; font-weight: 500; }
+.menu a:hover { color: var(--pink); }
 
 .contactBtn {
-  background-color: var(--sage-green);
-  color: var(--white);
-  padding: 10px 24px;
-  border-radius: 20px;
-  font-weight: 600;
+  background: var(--brand-gradient);
+  color: white;
+  padding: 10px 22px; border-radius: 22px; font-weight: 600; font-size: 0.9rem;
+  box-shadow: 0 4px 12px var(--pink-glow);
 }
+.contactBtn:hover { opacity: 0.9; }
 
-.contactBtn:hover {
-  background-color: var(--sage-green-dark);
+.mobileBtn { display: none; font-size: 1.6rem; color: var(--text-primary); }
+
+.mobileDropdown {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(217,79,138,0.12);
+  padding: 20px 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
-
-/* Mobile Menu Toggle */
-.mobileMenuBtn {
-  display: none;
-  font-size: 1.5rem;
-  color: var(--sage-green-dark);
+.mobileDropdown ul { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.mobileDropdown a { color: var(--text-secondary); font-weight: 500; font-size: 15px; }
+.mobileDropdown a:hover { color: var(--text-primary); }
+.mobileWa {
+  margin-top: 16px;
+  display: block; text-align: center;
+  background: var(--wa-green); color: white;
+  padding: 12px; border-radius: 12px; font-weight: 600;
 }
 
 @media (max-width: 768px) {
-  .menu {
-    display: none; /* In a real app we'd toggle this with state, keeping it simple for now */
-  }
-  
-  .contactBtn {
-    display: none;
-  }
-  
-  .mobileMenuBtn {
-    display: block;
-  }
+  .menu { display: none; }
+  .contactBtn { display: none; }
+  .mobileBtn { display: block; }
 }
