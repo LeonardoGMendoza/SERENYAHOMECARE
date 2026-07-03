@@ -15,9 +15,10 @@ const services = [
 ];
 
 const plans = [
-  { name: 'Plano Essencial', features: ['Cuidador 12h Diurno', 'Relatório diário de saúde', 'Controle de medicações', 'Suporte à família'], price: 'A partir de R$ 4.500/mês' },
-  { name: 'Plano Confort', features: ['Cuidador 12h ou 24h', 'Supervisão de Enfermagem', 'Relatórios semanais', 'Visita mensal de enfermagem', 'Suporte prioritário'], price: 'A partir de R$ 6.500/mês' },
-  { name: 'Plano Excellence', features: ['Atendimento 24h completo', 'Supervisão de Enfermagem', 'Fisioterapia inclusa', 'Gestão completa do cuidado', 'Relatórios diários detalhados', 'Suporte 24h para família'], price: 'A partir de R$ 13.000/mês' },
+  { name: 'Plano Essencial', features: ['Cuidador 12h Diurno', 'Relatório diário de saúde', 'Controle de medicações', 'Suporte à família'], price: 'Valores sob consulta' },
+  { name: 'Plano Confort', features: ['Cuidador 12h ou 24h', 'Supervisão de Enfermagem', 'Relatórios semanais', 'Visita mensal de enfermagem', 'Suporte prioritário'], price: 'Valores sob consulta' },
+  { name: 'Plano Ouro', features: ['Cuidador 24h completo', 'Supervisão de Enfermagem', 'Acompanhamento nutricional', 'Relatórios diários', 'Suporte 24h exclusivo'], price: 'Valores sob consulta' },
+  { name: 'Plano Excellence', features: ['Atendimento 24h completo', 'Supervisão de Enfermagem', 'Fisioterapia inclusa', 'Gestão completa do cuidado', 'Relatórios diários detalhados', 'Suporte 24h para família'], price: 'Valores sob consulta' },
 ];
 
 // Fotos da galeria — adicione os arquivos em /public com esses nomes
