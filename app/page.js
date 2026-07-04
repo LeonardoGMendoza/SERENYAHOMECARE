@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import CopyEmailButton from '../components/CopyEmailButton';
 import styles from './page.module.css';
 
 const WA_LINK = "https://wa.me/5511989553812?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
@@ -224,9 +225,7 @@ export default function Home() {
             <p style={{ marginBottom: '20px' }}>
               Mande seu currículo para o nosso e-mail de recrutamento.
             </p>
-            <a href="mailto:cuidadosserenya@gmail.com" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 24px' }}>
-              ✉️ Enviar Currículo
-            </a>
+            <CopyEmailButton email="cuidadosserenya@gmail.com" />
             <p style={{ marginTop: '15px', fontSize: '0.95rem', fontWeight: '500' }}>
               cuidadosserenya@gmail.com
             </p>
