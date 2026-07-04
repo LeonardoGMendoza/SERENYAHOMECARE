@@ -211,19 +211,26 @@ export default function Home() {
       </section>
 
       {/* ── TRABALHE CONOSCO ── */}
-      <section id="trabalhe-conosco" className="section" style={{ padding: '60px 0' }}>
+      <section id="trabalhe-conosco" className="section">
         <div className="container text-center">
-          <div className="section-label">Faça Parte da Equipe</div>
-          <h2 className="section-title" style={{ fontSize: '2rem', marginBottom: '15px' }}>Trabalhe Conosco</h2>
+          <div className="section-label">Faça parte da equipe</div>
+          <h2 className="section-title">Trabalhe Conosco</h2>
           <p className="section-sub" style={{ maxWidth: '600px', margin: '0 auto 30px' }}>
             Você é Cuidador(a), Técnico(a) de Enfermagem ou Enfermeiro(a) e ama cuidar de pessoas com humanização e respeito? Junte-se à família Serenya!
           </p>
-          <a href="mailto:cuidadosserenya@gmail.com" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 24px' }}>
-            ✉️ Enviar Currículo
-          </a>
-          <p style={{ marginTop: '15px', fontSize: '0.95rem', fontWeight: '500' }}>
-            cuidadosserenya@gmail.com
-          </p>
+          <div className={styles.contactCard} style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <div className={styles.contactIcon}>💼</div>
+            <h3>Envie seu currículo</h3>
+            <p style={{ marginBottom: '20px' }}>
+              Mande seu currículo para o nosso e-mail de recrutamento.
+            </p>
+            <a href="mailto:cuidadosserenya@gmail.com" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 24px' }}>
+              ✉️ Enviar Currículo
+            </a>
+            <p style={{ marginTop: '15px', fontSize: '0.95rem', fontWeight: '500' }}>
+              cuidadosserenya@gmail.com
+            </p>
+          </div>
         </div>
       </section>
 
