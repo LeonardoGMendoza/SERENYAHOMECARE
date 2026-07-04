@@ -1,6 +1,9 @@
-export { default } from "next-auth/middleware";
+import withAuth from "next-auth/middleware";
+
+export default function proxy(req, event) {
+  return withAuth(req, event);
+}
 
 export const config = {
-  // Protege tudo dentro de /dashboard, EXCETO a própria página de login
   matcher: ["/dashboard/((?!login).*)"],
 };
