@@ -224,7 +224,7 @@ export default function Home() {
             <p style={{ marginBottom: '20px' }}>
               Mande seu currículo para o nosso e-mail de recrutamento.
             </p>
-            <a href="mailto:cuidadosserenya@gmail.com" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 24px' }}>
+            <a href="mailto:cuidadosserenya@gmail.com" target="_blank" rel="noreferrer" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 24px' }}>
               ✉️ Enviar Currículo
             </a>
             <p style={{ marginTop: '15px', fontSize: '0.95rem', fontWeight: '500' }}>
