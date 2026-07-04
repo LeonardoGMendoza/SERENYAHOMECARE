@@ -210,6 +210,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── TRABALHE CONOSCO ── */}
+      <section id="trabalhe-conosco" className="section" style={{ padding: '60px 0' }}>
+        <div className="container text-center">
+          <div className="section-label">Faça Parte da Equipe</div>
+          <h2 className="section-title" style={{ fontSize: '2rem', marginBottom: '15px' }}>Trabalhe Conosco</h2>
+          <p className="section-sub" style={{ maxWidth: '600px', margin: '0 auto 30px' }}>
+            Você é Cuidador(a), Técnico(a) de Enfermagem ou Enfermeiro(a) e ama cuidar de pessoas com humanização e respeito? Junte-se à família Serenya!
+          </p>
+          <a href="mailto:cuidadosserenya@gmail.com" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 24px' }}>
+            ✉️ Enviar Currículo
+          </a>
+          <p style={{ marginTop: '15px', fontSize: '0.95rem', fontWeight: '500' }}>
+            cuidadosserenya@gmail.com
+          </p>
+        </div>
+      </section>
+
       {/* ── FOOTER ── */}
       <footer className={styles.footer}>
         <div className="container">
