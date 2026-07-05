@@ -77,3 +77,24 @@ model Candidato {
   updatedAt    DateTime @updatedAt
 }
 
+model RelatorioDiario {
+  id                    Int      @id @default(autoincrement())
+  cuidadorId            Int
+  cuidadorNome          String
+  pacienteId            Int
+  pacienteNome          String
+  data                  DateTime @default(now())
+  turno                 String?
+  pressaoArterial       String?
+  temperatura           String?
+  frequenciaCardiaca    String?
+  glicemia              String?
+  banho                 Boolean  @default(false)
+  alimentacao           String?
+  eliminacoes           String?
+  medicacoes            String?
+  relatoPlantao         String?
+  createdAt             DateTime @default(now())
+}
+
+

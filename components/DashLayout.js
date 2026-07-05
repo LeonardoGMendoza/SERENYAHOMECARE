@@ -5,20 +5,26 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './DashLayout.module.css';
 
-const navItems = [
-  { href: '/dashboard', icon: '📊', label: 'Visão Geral' },
-  { href: '/dashboard/pacientes', icon: '🏥', label: 'Pacientes' },
-  { href: '/dashboard/profissionais', icon: '👩‍⚕️', label: 'Profissionais' },
-  { href: '/dashboard/leads', icon: '📋', label: 'Leads' },
-  { href: '/dashboard/recrutamento', icon: '💼', label: 'Recrutamento' },
-];
-
 export default function DashLayout({ children }) {
   const { data: session, status } = useSession();
   const router = useRouter();
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+
+  const isCuidador = session?.user?.role === 'cuidador' || session?.user?.role === 'cuidadora';
+
+  const allowedNavItems = isCuidador
+    ? [{ href: '/dashboard/relatorio-diario', icon: '📋', label: 'Relatório Diário' }]
+    : [
+        { href: '/dashboard', icon: '📊', label: 'Visão Geral' },
+        { href: '/dashboard/pacientes', icon: '🏥', label: 'Pacientes' },
+        { href: '/dashboard/profissionais', icon: '👩‍⚕️', label: 'Profissionais' },
+        { href: '/dashboard/leads', icon: '📋', label: 'Leads' },
+        { href: '/dashboard/recrutamento', icon: '💼', label: 'Recrutamento' },
+        { href: '/dashboard/relatorios', icon: '📝', label: 'Relatórios' },
+        { href: '/dashboard/usuarios', icon: '👥', label: 'Equipe' },
+      ];
 
   useEffect(() => {
     const check = () => {
@@ -33,8 +39,14 @@ export default function DashLayout({ children }) {
   }, []);
 
   useEffect(() => {
-    if (status === 'unauthenticated') router.push('/dashboard/login');
-  }, [status, router]);
+    if (status === 'unauthenticated') {
+      router.push('/dashboard/login');
+    } else if (status === 'authenticated') {
+      if (isCuidador && pathname !== '/dashboard/relatorio-diario') {
+        router.push('/dashboard/relatorio-diario');
+      }
+    }
+  }, [status, isCuidador, pathname, router]);
 
   if (status === 'loading') {
     return (
@@ -45,6 +57,8 @@ export default function DashLayout({ children }) {
     );
   }
   if (!session) return null;
+
+  const currentLabel = allowedNavItems.find(n => n.href === pathname)?.label || 'Dashboard';
 
   return (
     <div className={`${styles.shell} ${sidebarOpen ? '' : styles.collapsed}`}>
@@ -60,7 +74,7 @@ export default function DashLayout({ children }) {
           <img src="/serenya-logo.jpg" alt="Serenya" className={styles.sidebarLogo} />
           {sidebarOpen && (
             <div>
-              <div className={styles.sidebarName}>SERENYA</div>
+              <div className={styles.sidebarName}>SERENYAHOME</div>
               <div className={styles.sidebarSub}>Painel de Gestão</div>
             </div>
           )}
@@ -70,7 +84,7 @@ export default function DashLayout({ children }) {
         </div>
 
         <nav className={styles.nav}>
-          {navItems.map(item => (
+          {allowedNavItems.map(item => (
             <Link
               key={item.href}
               href={item.href}
@@ -96,7 +110,9 @@ export default function DashLayout({ children }) {
               </div>
               <div>
                 <div className={styles.userName}>{session.user.name}</div>
-                <div className={styles.userRole}>Diretoria</div>
+                <div className={styles.userRole}>
+                  {session.user.role === 'diretora' ? 'Diretoria' : 'Cuidador(a)'}
+                </div>
               </div>
             </div>
           )}
@@ -118,7 +134,7 @@ export default function DashLayout({ children }) {
             <button className={styles.menuBtn} onClick={() => setSidebarOpen(true)}>☰</button>
           )}
           <div className={styles.headerTitle}>
-            {navItems.find(n => n.pathname === pathname)?.label || 'Dashboard'}
+            {currentLabel}
           </div>
           <div className={styles.headerRight}>
             <span className={styles.headerDate}>

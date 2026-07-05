@@ -1,8 +1,16 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
 import bcrypt from 'bcryptjs';
+import { PrismaClient } from '@prisma/client';
+import { Pool } from 'pg';
+import { PrismaPg } from '@prisma/adapter-pg';
 
-// Usuários fixos do dashboard
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
+
+// Usuários fixos do dashboard (para login com credenciais locais)
 const USERS = [
   { id: '1', name: 'Sandra Luciane', email: 'sandra@serenya.com', password: '123', role: 'diretora', image: '/sandra.jpg' },
   { id: '2', name: 'Rosecler', email: 'rosecler@serenya.com', password: '123', role: 'diretora', image: '/rosecler.jpg' },
@@ -10,6 +18,10 @@ const USERS = [
 
 export const authOptions = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || 'dummy-id',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'dummy-secret',
+    }),
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -18,13 +30,26 @@ export const authOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
+        
+        // 1. Verificar na lista de diretores fixos
         const user = USERS.find(u => u.email === credentials.email);
-        if (!user) return null;
+        if (user && credentials.password === user.password) {
+          return { id: user.id, name: user.name, email: user.email, role: user.role, image: user.image };
+        }
+
+        // 2. Verificar no banco de dados (cuidadoras/outros com senha)
+        const dbUser = await prisma.user.findUnique({
+          where: { email: credentials.email }
+        });
+
+        if (dbUser) {
+          const isValid = await bcrypt.compare(credentials.password, dbUser.password);
+          if (isValid) {
+            return { id: String(dbUser.id), name: dbUser.name, email: dbUser.email, role: dbUser.role };
+          }
+        }
         
-        // Comparação simples para testes (senha: 123)
-        if (credentials.password !== user.password) return null;
-        
-        return { id: user.id, name: user.name, email: user.email, role: user.role, image: user.image };
+        return null;
       },
     }),
   ],
@@ -32,6 +57,32 @@ export const authOptions = {
     signIn: '/dashboard/login',
   },
   callbacks: {
+    async signIn({ user, account, profile }) {
+      if (account?.provider === 'google') {
+        const allowedEmails = [
+          'sandra.nakata092@gmail.com',
+          'cuidadosserenya@gmail.com'
+        ];
+
+        if (allowedEmails.includes(user.email)) {
+          user.role = 'diretora';
+          return true;
+        }
+
+        // Consultar no banco se é cuidadora cadastrada
+        const dbUser = await prisma.user.findUnique({
+          where: { email: user.email }
+        });
+
+        if (dbUser) {
+          user.role = dbUser.role; // ex: 'cuidador' ou 'diretora'
+          return true;
+        }
+
+        return false; // Bloqueia login de qualquer outro Gmail
+      }
+      return true;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.role = user.role;

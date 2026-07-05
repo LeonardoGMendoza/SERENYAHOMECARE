@@ -139,3 +139,51 @@
   transition: color 0.2s;
 }
 .backLink:hover { color: #D94F8A; }
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #aaa;
+  font-size: 0.85rem;
+  margin: 16px 0;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.divider:not(:empty)::before {
+  margin-right: .5em;
+}
+.divider:not(:empty)::after {
+  margin-left: .5em;
+}
+
+.googleBtn {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 30px;
+  color: #333;
+  padding: 13px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  transition: background 0.2s, box-shadow 0.2s;
+  width: 100%;
+  font-family: inherit;
+}
+.googleBtn:hover {
+  background: #fdfdfd;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.googleIcon {
+  width: 18px;
+  height: 18px;
+}
+
