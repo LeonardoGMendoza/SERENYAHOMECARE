@@ -14,7 +14,7 @@ const prisma = new PrismaClient({ adapter });
 export async function PATCH(req, { params }) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session) {
+    if (!session || session.user.role !== 'diretora') {
       return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
     }
 
@@ -41,7 +41,7 @@ export async function PATCH(req, { params }) {
 export async function DELETE(req, { params }) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session) {
+    if (!session || session.user.role !== 'diretora') {
       return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
     }
 

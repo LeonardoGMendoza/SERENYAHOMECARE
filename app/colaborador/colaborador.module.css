@@ -1,0 +1,101 @@
+/* PORTAL DO COLABORADOR STYLE SHEET */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #fff5f8 0%, #fff 50%, #f4fbf6 100%);
+  position: relative;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+.bg { position: absolute; inset: 0; pointer-events: none; }
+.blob1 {
+  position: absolute; top: -100px; left: -100px; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(217,79,138,0.12) 0%, transparent 75%);
+  border-radius: 50%;
+}
+.blob2 {
+  position: absolute; bottom: -100px; right: -100px; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(74,140,82,0.1) 0%, transparent 75%);
+  border-radius: 50%;
+}
+
+/* LOGIN CARD */
+.loginCard {
+  margin: auto;
+  position: relative; z-index: 1;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(217,79,138,0.15);
+  border-radius: 24px;
+  padding: 40px 32px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 50px rgba(217,79,138,0.06), 0 4px 20px rgba(0,0,0,0.04);
+  text-align: center;
+}
+
+.logo { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; }
+.logoImg { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(217,79,138,0.25); }
+.logoName { font-size: 1.25rem; font-weight: 900; background: linear-gradient(135deg, #D94F8A, #4a8c52); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.logoSub { font-size: 0.7rem; color: #888; text-align: left; }
+
+.title { font-size: 1.5rem; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; }
+.subtitle { color: #666; font-size: 0.9rem; margin-bottom: 24px; line-height: 1.4; }
+
+.googleBtn {
+  background: white; border: 1px solid rgba(0, 0, 0, 0.15); border-radius: 30px; color: #333;
+  padding: 14px; font-size: 0.95rem; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02); transition: all 0.2s; width: 100%; font-family: inherit;
+}
+.googleBtn:hover { background: #fdfdfd; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transform: translateY(-1px); }
+.googleIcon { width: 18px; height: 18px; }
+
+.backLink { display: block; margin-top: 24px; color: #aaa; font-size: 0.85rem; text-decoration: none; }
+.backLink:hover { color: #D94F8A; }
+
+/* FORM CONTAINER (WHEN LOGGED IN) */
+.formContainer {
+  max-width: 700px; margin: 0 auto; width: 100%; position: relative; z-index: 1;
+}
+.formHeader {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
+}
+.userMiniInfo { display: flex; align-items: center; gap: 10px; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: #D94F8A; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.logoutBtn { background: none; border: none; color: #d84a4a; font-weight: 700; font-size: 0.85rem; cursor: pointer; text-decoration: underline; padding: 4px; }
+
+.formCard { background: white; border-radius: 24px; padding: 32px; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 4px 30px rgba(0,0,0,0.03); display: flex; flex-direction: column; gap: 24px; }
+@media (max-width: 576px) { .formCard { padding: 20px 16px; } }
+
+.sectionTitle { font-size: 1.1rem; font-weight: 800; color: #D94F8A; margin-bottom: 8px; border-bottom: 1.5px solid rgba(217,79,138,0.1); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+
+.formRow { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 768px) { .formRow { grid-template-columns: 1fr; gap: 16px; } }
+
+.formGroup { display: flex; flex-direction: column; gap: 8px; }
+.label { font-size: 0.9rem; font-weight: 600; color: #444; }
+.input, .select, .textarea { width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid #e1e1e1; background: #fdfdfd; font-family: inherit; font-size: 0.95rem; color: #333; transition: all 0.2s ease; }
+.input:focus, .select:focus, .textarea:focus { outline: none; border-color: #D94F8A; background: #fff; box-shadow: 0 0 0 4px rgba(217,79,138,0.1); }
+.textarea { resize: vertical; min-height: 120px; }
+
+.checkboxGroup { display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 8px 0; }
+.checkbox { width: 22px; height: 22px; border-radius: 6px; border: 2px solid #e1e1e1; appearance: none; -webkit-appearance: none; outline: none; cursor: pointer; transition: all 0.2s; position: relative; }
+.checkbox:checked { border-color: #D94F8A; background-color: #D94F8A; }
+.checkbox:checked::after { content: '✓'; color: white; position: absolute; font-size: 14px; font-weight: 900; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+.submitBtn { background: linear-gradient(135deg, #D94F8A 0%, #b83a6f 100%); color: white; font-weight: 700; font-size: 1.05rem; padding: 16px 24px; border-radius: 12px; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(217,79,138,0.3); display: flex; justify-content: center; align-items: center; }
+.submitBtn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(217,79,138,0.4); }
+.submitBtn:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; transform: none; }
+
+.successCard { background: white; border-radius: 24px; padding: 48px 32px; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 4px 30px rgba(0,0,0,0.03); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; margin: auto; max-width: 500px; }
+.successIcon { font-size: 3.5rem; }
+.btnBack { background: #f0f4ff; color: #3a6fd8; padding: 12px 24px; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; margin-top: 8px; text-decoration: none; transition: background 0.2s; }
+.btnBack:hover { background: #e0ebff; }
+
+.linkAdmin { display: inline-flex; background: #e0f2fe; color: #0369a1; font-weight: 700; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.85rem; transition: background 0.2s; }
+.linkAdmin:hover { background: #bae6fd; }

@@ -67,7 +67,7 @@ export async function POST(req) {
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-    if (!session) {
+    if (!session || session.user.role !== 'diretora') {
       return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
     }
 

@@ -141,7 +141,10 @@ export default function UsuariosPage() {
                     </td>
                     <td>
                       <span className={`${styles.roleBadge} ${u.role === 'diretora' ? styles.roleDiretora : styles.roleCuidador}`}>
-                        {u.role === 'diretora' ? '🔑 Diretora' : '🩺 Cuidador(a)'}
+                        {u.role === 'diretora' && '🔑 Diretora'}
+                        {u.role === 'cuidador' && '🩺 Cuidador(a)'}
+                        {u.role === 'tecnico' && '⚡ Técnico(a)'}
+                        {u.role === 'enfermeira' && '👩‍⚕️ Enfermeiro(a)'}
                       </span>
                     </td>
                     <td style={{ textAlign: 'right' }}>
@@ -211,7 +214,9 @@ export default function UsuariosPage() {
                     value={form.role}
                     onChange={e => setForm({ ...form, role: e.target.value })}
                   >
-                    <option value="cuidador">🩺 Cuidador(a) (Apenas Relatório Diário)</option>
+                    <option value="cuidador">🩺 Cuidador(a) (Acesso Relatório)</option>
+                    <option value="tecnico">⚡ Técnico(a) de Enfermagem (Acesso Relatório)</option>
+                    <option value="enfermeira">👩‍⚕️ Enfermeiro(a) (Acesso Relatório)</option>
                     <option value="diretora">🔑 Diretora (Acesso Total ao Painel)</option>
                   </select>
                 </div>

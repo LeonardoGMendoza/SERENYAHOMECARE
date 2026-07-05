@@ -12,19 +12,17 @@ export default function DashLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
-  const isCuidador = session?.user?.role === 'cuidador' || session?.user?.role === 'cuidadora';
+  const isEquipe = ['cuidador', 'tecnico', 'enfermeira'].includes(session?.user?.role);
 
-  const allowedNavItems = isCuidador
-    ? [{ href: '/dashboard/relatorio-diario', icon: '📋', label: 'Relatório Diário' }]
-    : [
-        { href: '/dashboard', icon: '📊', label: 'Visão Geral' },
-        { href: '/dashboard/pacientes', icon: '🏥', label: 'Pacientes' },
-        { href: '/dashboard/profissionais', icon: '👩‍⚕️', label: 'Profissionais' },
-        { href: '/dashboard/leads', icon: '📋', label: 'Leads' },
-        { href: '/dashboard/recrutamento', icon: '💼', label: 'Recrutamento' },
-        { href: '/dashboard/relatorios', icon: '📝', label: 'Relatórios' },
-        { href: '/dashboard/usuarios', icon: '👥', label: 'Equipe' },
-      ];
+  const allowedNavItems = [
+    { href: '/dashboard', icon: '📊', label: 'Visão Geral' },
+    { href: '/dashboard/pacientes', icon: '🏥', label: 'Pacientes' },
+    { href: '/dashboard/profissionais', icon: '👩‍⚕️', label: 'Profissionais' },
+    { href: '/dashboard/leads', icon: '📋', label: 'Leads' },
+    { href: '/dashboard/recrutamento', icon: '💼', label: 'Recrutamento' },
+    { href: '/dashboard/relatorios', icon: '📝', label: 'Relatórios' },
+    { href: '/dashboard/usuarios', icon: '👥', label: 'Equipe' },
+  ];
 
   useEffect(() => {
     const check = () => {
@@ -42,11 +40,11 @@ export default function DashLayout({ children }) {
     if (status === 'unauthenticated') {
       router.push('/dashboard/login');
     } else if (status === 'authenticated') {
-      if (isCuidador && pathname !== '/dashboard/relatorio-diario') {
-        router.push('/dashboard/relatorio-diario');
+      if (isEquipe) {
+        router.push('/colaborador');
       }
     }
-  }, [status, isCuidador, pathname, router]);
+  }, [status, isEquipe, router]);
 
   if (status === 'loading') {
     return (

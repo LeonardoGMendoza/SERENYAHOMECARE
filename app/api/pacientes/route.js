@@ -13,9 +13,9 @@ const prisma = new PrismaClient({ adapter });
 
 export async function POST(req) {
   try {
-    // 1. Verificação de Segurança Severa (Apenas Logados)
+    // 1. Verificação de Segurança Severa (Apenas Diretoria)
     const session = await getServerSession(authOptions);
-    if (!session) {
+    if (!session || session.user.role !== 'diretora') {
       return NextResponse.json({ error: 'Não autorizado. Acesso negado.' }, { status: 401 });
     }
 
