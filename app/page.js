@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import CopyEmailButton from '../components/CopyEmailButton';
+import RecruitmentForm from '../components/RecruitmentForm';
 import styles from './page.module.css';
 
 const WA_LINK = "https://wa.me/5511989553812?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
@@ -216,20 +217,10 @@ export default function Home() {
         <div className="container text-center">
           <div className="section-label">Faça parte da equipe</div>
           <h2 className="section-title">Trabalhe Conosco</h2>
-          <p className="section-sub" style={{ maxWidth: '600px', margin: '0 auto 30px' }}>
+          <p className="section-sub" style={{ maxWidth: '600px', margin: '0 auto 10px' }}>
             Você é Cuidador(a), Técnico(a) de Enfermagem ou Enfermeiro(a) e ama cuidar de pessoas com humanização e respeito? Junte-se à família Serenya!
           </p>
-          <div className={styles.contactCard} style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <div className={styles.contactIcon}>💼</div>
-            <h3>Envie seu currículo</h3>
-            <p style={{ marginBottom: '20px' }}>
-              Mande seu currículo para o nosso e-mail de recrutamento.
-            </p>
-            <CopyEmailButton email="cuidadosserenya@gmail.com" />
-            <p style={{ marginTop: '15px', fontSize: '0.95rem', fontWeight: '500' }}>
-              cuidadosserenya@gmail.com
-            </p>
-          </div>
+          <RecruitmentForm />
         </div>
       </section>
 

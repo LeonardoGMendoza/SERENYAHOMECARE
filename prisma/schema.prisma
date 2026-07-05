@@ -62,3 +62,18 @@ model Atendimento {
   observacoes String?
   createdAt   DateTime @default(now())
 }
+
+model Candidato {
+  id           Int      @id @default(autoincrement())
+  nome         String
+  email        String
+  telefone     String
+  cargo        String
+  experiencia  String?
+  cidade       String?
+  status       String   @default("Novo")
+  curriculoUrl String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+

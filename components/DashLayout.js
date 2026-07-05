@@ -10,6 +10,7 @@ const navItems = [
   { href: '/dashboard/pacientes', icon: '🏥', label: 'Pacientes' },
   { href: '/dashboard/profissionais', icon: '👩‍⚕️', label: 'Profissionais' },
   { href: '/dashboard/leads', icon: '📋', label: 'Leads' },
+  { href: '/dashboard/recrutamento', icon: '💼', label: 'Recrutamento' },
 ];
 
 export default function DashLayout({ children }) {
