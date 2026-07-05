@@ -18,7 +18,7 @@ export async function PATCH(req, { params }) {
       return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await params;
     const body = await req.json();
     const { status } = body;
 
@@ -45,7 +45,7 @@ export async function DELETE(req, { params }) {
       return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     // Buscar o candidato para pegar a URL do currículo antes de deletar
     const candidato = await prisma.candidato.findUnique({

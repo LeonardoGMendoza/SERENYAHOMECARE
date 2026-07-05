@@ -16,7 +16,7 @@ export async function PATCH(req, { params }) {
       return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await params;
     const body = await req.json();
     const { status } = body;
 
@@ -39,7 +39,7 @@ export async function DELETE(req, { params }) {
       return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     await prisma.lead.delete({
       where: { id: parseInt(id) }
