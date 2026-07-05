@@ -1,0 +1,44 @@
+.container { display: flex; flex-direction: column; gap: 24px; }
+.topBar { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+.title { font-size: 1.8rem; font-weight: 800; color: #1a1a1a; margin-bottom: 4px; }
+.subtitle { color: #888; font-size: 0.95rem; }
+.btnNovo { background: linear-gradient(135deg, #D94F8A 0%, #b83a6f 100%); color: white; font-weight: 700; font-size: 0.95rem; padding: 12px 20px; border-radius: 12px; border: none; cursor: pointer; text-decoration: none; display: inline-block; box-shadow: 0 4px 15px rgba(217,79,138,0.3); transition: all 0.2s ease; }
+.btnNovo:hover { transform: translateY(-2px); }
+
+.kpiRow { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
+.kpiCard { background: white; border-radius: 16px; padding: 20px; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+.kpiNum { font-size: 2rem; font-weight: 800; }
+.kpiLabel { font-size: 0.85rem; font-weight: 600; color: #888; margin-top: 4px; }
+
+.filtros { display: flex; gap: 8px; flex-wrap: wrap; }
+.filtroBtn { padding: 8px 18px; border-radius: 20px; border: 1px solid #e1e1e1; background: white; color: #555; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.filtroAtivo { background: #D94F8A; color: white; border-color: #D94F8A; }
+
+.card { background: white; border-radius: 20px; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 4px 20px rgba(0,0,0,0.03); overflow: hidden; }
+.table { width: 100%; border-collapse: collapse; }
+.table thead tr { border-bottom: 1px solid #f0f0f0; }
+.table th { padding: 16px 20px; text-align: left; font-size: 0.8rem; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.05em; }
+.table td { padding: 14px 20px; border-bottom: 1px solid #f9f9f9; }
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr:hover { background: #fdf5f8; }
+
+.nome { font-weight: 700; color: #1a1a1a; font-size: 0.95rem; }
+.secondary { color: #777; font-size: 0.9rem; }
+
+.statusSelect { padding: 6px 12px; border-radius: 20px; border: none; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+
+.empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 60px 24px; color: #aaa; text-align: center; }
+.emptyIcon { font-size: 3rem; }
+
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal { background: white; border-radius: 20px; padding: 32px; width: 100%; max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+.modalTitle { font-size: 1.4rem; font-weight: 800; color: #1a1a1a; margin-bottom: 24px; }
+.modalForm { display: flex; flex-direction: column; gap: 16px; }
+.formGroup { display: flex; flex-direction: column; gap: 8px; }
+.label { font-size: 0.9rem; font-weight: 600; color: #444; }
+.input { width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #e1e1e1; background: #fdfdfd; font-family: inherit; font-size: 1rem; color: #333; transition: all 0.2s; }
+.input:focus { outline: none; border-color: #D94F8A; box-shadow: 0 0 0 4px rgba(217,79,138,0.1); }
+.modalBtns { display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px; }
+.btnCancelar { padding: 12px 20px; border-radius: 12px; border: 1px solid #e1e1e1; background: white; color: #555; font-weight: 600; cursor: pointer; }
+
+@media (max-width: 768px) { .table th:nth-child(3), .table td:nth-child(3), .table th:nth-child(4), .table td:nth-child(4) { display: none; } }
