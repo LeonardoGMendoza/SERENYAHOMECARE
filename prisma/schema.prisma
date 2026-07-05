@@ -9,12 +9,14 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  role      String   @default("admin")
-  createdAt DateTime @default(now())
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String    @unique
+  password    String
+  role        String    @default("admin")
+  pacienteId  Int?
+  paciente    Paciente? @relation(fields: [pacienteId], references: [id], onDelete: SetNull)
+  createdAt   DateTime  @default(now())
 }
 
 model Paciente {
@@ -25,6 +27,7 @@ model Paciente {
   diagnostico  String?
   status       String   @default("Ativo")
   plano        String?
+  users        User[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
