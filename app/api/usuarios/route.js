@@ -24,6 +24,15 @@ export async function GET() {
         name: true,
         email: true,
         role: true,
+<<<<<<< HEAD
+=======
+        pacienteId: true,
+        paciente: {
+          select: {
+            nome: true
+          }
+        },
+>>>>>>> desenvolvimento
         createdAt: true,
       }
     });
@@ -43,7 +52,11 @@ export async function POST(req) {
     }
 
     const body = await req.json();
+<<<<<<< HEAD
     const { name, email, role, password } = body;
+=======
+    const { name, email, role, password, pacienteId } = body;
+>>>>>>> desenvolvimento
 
     if (!name || !email || !role) {
       return NextResponse.json({ error: 'Nome, E-mail e Cargo são obrigatórios.' }, { status: 400 });
@@ -68,12 +81,25 @@ export async function POST(req) {
         email,
         role,
         password: hashedPassword,
+<<<<<<< HEAD
+=======
+        pacienteId: pacienteId ? parseInt(pacienteId) : null,
+>>>>>>> desenvolvimento
       },
       select: {
         id: true,
         name: true,
         email: true,
         role: true,
+<<<<<<< HEAD
+=======
+        pacienteId: true,
+        paciente: {
+          select: {
+            nome: true
+          }
+        },
+>>>>>>> desenvolvimento
         createdAt: true,
       }
     });

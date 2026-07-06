@@ -33,21 +33,46 @@ export const authOptions = {
         
         // 1. Verificar na lista de diretores fixos
         const user = USERS.find(u => u.email === credentials.email);
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+        if (!user) return null;
+=======
+>>>>>>> desenvolvimento
         if (user && credentials.password === user.password) {
           return { id: user.id, name: user.name, email: user.email, role: user.role, image: user.image };
         }
 
         // 2. Verificar no banco de dados (cuidadoras/outros com senha)
         const dbUser = await prisma.user.findUnique({
+<<<<<<< HEAD
           where: { email: credentials.email }
+=======
+          where: { email: credentials.email },
+          include: { paciente: true }
+>>>>>>> desenvolvimento
         });
 
         if (dbUser) {
           const isValid = await bcrypt.compare(credentials.password, dbUser.password);
           if (isValid) {
+<<<<<<< HEAD
             return { id: String(dbUser.id), name: dbUser.name, email: dbUser.email, role: dbUser.role };
           }
         }
+=======
+            return {
+              id: String(dbUser.id),
+              name: dbUser.name,
+              email: dbUser.email,
+              role: dbUser.role,
+              pacienteId: dbUser.pacienteId,
+              pacienteNome: dbUser.paciente?.nome || null
+            };
+          }
+        }
+>>>>>>> Stashed changes
+>>>>>>> desenvolvimento
         
         return null;
       },
@@ -57,6 +82,11 @@ export const authOptions = {
     signIn: '/dashboard/login',
   },
   callbacks: {
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> desenvolvimento
     async signIn({ user, account, profile }) {
       if (account?.provider === 'google') {
         const allowedEmails = [
@@ -71,11 +101,22 @@ export const authOptions = {
 
         // Consultar no banco se é cuidadora cadastrada
         const dbUser = await prisma.user.findUnique({
+<<<<<<< HEAD
           where: { email: user.email }
         });
 
         if (dbUser) {
           user.role = dbUser.role; // ex: 'cuidador' ou 'diretora'
+=======
+          where: { email: user.email },
+          include: { paciente: true }
+        });
+
+        if (dbUser) {
+          user.role = dbUser.role; // ex: 'cuidador', 'tecnico', 'enfermeira'
+          user.pacienteId = dbUser.pacienteId;
+          user.pacienteNome = dbUser.paciente?.nome || null;
+>>>>>>> desenvolvimento
           return true;
         }
 
@@ -83,17 +124,43 @@ export const authOptions = {
       }
       return true;
     },
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> desenvolvimento
     async jwt({ token, user }) {
       if (user) {
         token.role = user.role;
         token.image = user.image;
+        token.id = user.id;
+        token.pacienteId = user.pacienteId;
+        token.pacienteNome = user.pacienteNome;
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
+        session.user.id = token.id;
         session.user.role = token.role;
         session.user.image = token.image;
+        session.user.pacienteId = token.pacienteId;
+        session.user.pacienteNome = token.pacienteNome;
+
+        // Buscar atualizações do paciente designado em tempo real
+        if (token.role !== 'diretora' && token.email) {
+          try {
+            const dbUser = await prisma.user.findUnique({
+              where: { email: token.email },
+              include: { paciente: true }
+            });
+            if (dbUser) {
+              session.user.pacienteId = dbUser.pacienteId;
+              session.user.pacienteNome = dbUser.paciente?.nome || null;
+            }
+          } catch (e) {
+            console.error('Erro ao buscar paciente em tempo real na sessão:', e);
+          }
+        }
       }
       return session;
     },

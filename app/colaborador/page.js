@@ -39,6 +39,20 @@ export default function ColaboradorPortal() {
     }
   }, [status]);
 
+<<<<<<< HEAD
+=======
+  // Pré-selecionar o paciente designado do colaborador logado
+  useEffect(() => {
+    if (status === 'authenticated' && session?.user?.pacienteId) {
+      setForm(prev => ({
+        ...prev,
+        pacienteId: String(session.user.pacienteId),
+        pacienteNome: session.user.pacienteNome || ''
+      }));
+    }
+  }, [status, session]);
+
+>>>>>>> desenvolvimento
   const handlePacienteChange = (e) => {
     const pId = e.target.value;
     const p = pacientes.find(item => String(item.id) === String(pId));
@@ -196,7 +210,19 @@ export default function ColaboradorPortal() {
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label className={styles.label}>Paciente *</label>
+<<<<<<< HEAD
                 {loadingPacientes ? (
+=======
+                {session?.user?.pacienteId ? (
+                  <input 
+                    type="text" 
+                    className={styles.input} 
+                    style={{ background: '#f9f9f9', color: '#555', fontWeight: 'bold', border: '1px solid #e2e8f0' }} 
+                    disabled 
+                    value={session.user.pacienteNome || ''} 
+                  />
+                ) : loadingPacientes ? (
+>>>>>>> desenvolvimento
                   <select className={styles.select} disabled><option>Carregando pacientes...</option></select>
                 ) : (
                   <select 
