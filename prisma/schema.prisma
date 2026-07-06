@@ -82,7 +82,7 @@ model Candidato {
 
 model RelatorioDiario {
   id                    Int      @id @default(autoincrement())
-  cuidadorId            Int
+  cuidadorId            String
   cuidadorNome          String
   pacienteId            Int
   pacienteNome          String

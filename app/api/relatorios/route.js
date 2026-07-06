@@ -36,7 +36,7 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Selecione um paciente.' }, { status: 400 });
     }
 
-    const cuidadorId = parseInt(session.user.id) || 0;
+    const cuidadorId = String(session.user.id || '0');
     const cuidadorNome = session.user.name || 'Desconhecido';
 
     const novoRelatorio = await prisma.relatorioDiario.create({
