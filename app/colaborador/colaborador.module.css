@@ -1,595 +1,346 @@
-/* ============================================
-   LAYOUT PRINCIPAL CENTRALIZADO
-   ============================================ */
-
-/* Container Principal - Centralizado */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e9edf5 100%);
-}
-
-/* ============================================
-   CARDS E PAINÉIS
-   ============================================ */
-
-.painel {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 2.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 10px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.painel:hover {
-  box-shadow: 0 20px 60px rgba(108, 99, 255, 0.12), 0 4px 20px rgba(0, 0, 0, 0.06);
-}
-
-/* ============================================
-   CABEÇALHO - Centralizado
-   ============================================ */
-
-.header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 2px solid #f0f0f0;
-}
-
-.header h1 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin: 0 0 0.3rem 0;
-  letter-spacing: -0.5px;
-}
-
-.header h1 span {
-  background: linear-gradient(135deg, #6c63ff, #4a3fcf);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.header .subtitle {
-  font-size: 1rem;
-  color: #888;
-  margin: 0.3rem 0 0 0;
-}
-
-/* Badge de Status */
-.statusBadge {
-  display: inline-block;
-  padding: 0.4rem 1.5rem;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  background: #e8f5e9;
-  color: #2e7d32;
-  margin-top: 0.8rem;
-}
-
-/* ============================================
-   INFORMAÇÕES DO USUÁRIO - Centralizado
-   ============================================ */
-
-.userInfo {
-  text-align: center;
-  background: #f8f9fc;
-  border-radius: 16px;
-  padding: 1.2rem;
-  margin-bottom: 2rem;
-  border: 1px solid #eee;
-}
-
-.userInfo .userName {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #1a1a2e;
-}
-
-.userInfo .userEmail {
-  font-size: 0.9rem;
-  color: #888;
-}
-
-.btnSair {
-  background: none;
-  border: none;
-  color: #ff4757;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  text-decoration: underline;
-  margin-left: 1rem;
-  transition: color 0.2s;
-}
-
-.btnSair:hover {
-  color: #e63545;
-}
-
-/* ============================================
-   TÍTULOS DAS SEÇÕES - Centralizado
-   ============================================ */
-
-.sectionTitle {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #1a1a2e;
-  margin: 1.5rem 0 1rem 0;
-  text-align: center;
-}
-
-.sectionSubtitle {
-  text-align: center;
-  color: #888;
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-}
-
-/* ============================================
-   GRID DO FORMULÁRIO - Centralizado
-   ============================================ */
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.formGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-@media (max-width: 768px) {
-  .formGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.formGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.formGroup label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #444;
-  letter-spacing: 0.3px;
-}
-
-.formGroup .labelRequired::after {
-  content: " *";
-  color: #ff4757;
-  font-weight: 600;
-}
-
-/* ============================================
-   INPUTS - ESTILO UNIFORME
-   ============================================ */
-
-.formGroup :global(input),
-.formGroup :global(select),
-.formGroup :global(textarea) {
-  padding: 0.75rem 1rem;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  transition: all 0.25s ease;
-  background: #fafbfc;
-  width: 100%;
-  font-family: inherit;
-}
-
-.formGroup :global(input:focus),
-.formGroup :global(select:focus),
-.formGroup :global(textarea:focus) {
-  outline: none;
-  border-color: #6c63ff;
-  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.12);
-  background: #ffffff;
-}
-
-.formGroup :global(textarea) {
-  resize: vertical;
-  min-height: 80px;
-}
-
-/* ============================================
-   CHECKBOX - Centralizado e Estilizado
-   ============================================ */
-
-.formGroup :global(input[type="checkbox"]) {
-  width: 20px;
-  height: 20px;
-  accent-color: #6c63ff;
-  cursor: pointer;
-  margin-right: 0.6rem;
-  border-radius: 4px;
-  border: 2px solid #d0d0d0;
-  transition: all 0.2s ease;
-}
-
-.checkboxLabel {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
-  color: #333;
-  cursor: pointer;
-  padding: 0.3rem 0;
-}
-
-/* ============================================
-   BOTÕES - Centralizados
-   ============================================ */
-
-.formActions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid #f0f0f0;
-  flex-wrap: wrap;
-}
-
-.btnPrimary {
-  background: linear-gradient(135deg, #6c63ff, #5a52d5);
-  color: #fff;
-  border: none;
-  padding: 0.85rem 2.5rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.25);
-  min-width: 180px;
-}
-
-.btnPrimary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.35);
-  background: linear-gradient(135deg, #7a72ff, #5a52d5);
-}
-
-.btnPrimary:active {
-  transform: scale(0.97);
-}
-
-.btnPrimary:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.btnSecondary {
-  background: transparent;
-  color: #666;
-  border: 2px solid #e0e0e0;
-  padding: 0.85rem 2.5rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  min-width: 180px;
-}
-
-.btnSecondary:hover {
-  background: #f5f5f5;
-  border-color: #bbb;
-  transform: translateY(-2px);
-}
-
-.btnDanger {
-  background: #ff4757;
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1.5rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.btnDanger:hover {
-  background: #e63545;
-  transform: translateY(-2px);
-}
-
-/* ============================================
-   MENSAGENS
-   ============================================ */
-
-.success {
-  background: #e8f5e9;
-  color: #2e7d32;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-  text-align: center;
-  border-left: 4px solid #2e7d32;
-}
-
-.error {
-  background: #ffebee;
-  color: #c62828;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-  text-align: center;
-  border-left: 4px solid #c62828;
-}
-
-/* ============================================
-   TABELA DE RELATÓRIOS
-   ============================================ */
-
-.tableWrapper {
-  overflow-x: auto;
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid #eee;
-  margin-top: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-
-.table th {
-  background: #f8f9fc;
-  text-align: left;
-  padding: 0.9rem 1.2rem;
-  font-weight: 600;
-  color: #444;
-  border-bottom: 2px solid #eee;
-}
-
-.table td {
-  padding: 0.9rem 1.2rem;
-  border-bottom: 1px solid #f0f0f0;
-  color: #333;
-}
-
-.table tr:hover td {
-  background: #fafafa;
-}
-
-.table .badge {
-  display: inline-block;
-  padding: 0.2rem 0.8rem;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.badgeDiurno {
-  background: #fff3e0;
-  color: #e65100;
-}
-
-.badgeNoturno {
-  background: #e3f2fd;
-  color: #0d47a1;
-}
-
-.badgePendente {
-  background: #fff8e1;
-  color: #f57f17;
-}
-
-.badgeFinalizado {
-  background: #e8f5e9;
-  color: #2e7d32;
-}
-
-/* ============================================
-   LOADING E EMPTY STATE - Centralizado
-   ============================================ */
-
-.loading {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 300px;
-  font-size: 1.1rem;
-  color: #888;
-}
-
-.loadingSpinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid #f0f0f0;
-  border-top: 4px solid #6c63ff;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin-bottom: 1rem;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.emptyState {
-  text-align: center;
-  padding: 3rem 1.5rem;
-  color: #888;
-}
-
-.emptyState h3 {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 0.5rem;
-}
-
-.emptyState p {
-  color: #aaa;
-}
-
-/* ============================================
-   LOGIN - Página Centralizada
-   ============================================ */
-
-.loginContainer {
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-  background: #ffffff;
-  border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-  text-align: center;
-}
-
-.loginContainer .logo {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 0.5rem;
-}
-
-.loginContainer .logo span {
-  background: linear-gradient(135deg, #6c63ff, #4a3fcf);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.loginContainer .loginSubtitle {
-  color: #888;
-  font-size: 0.95rem;
-  margin-bottom: 2rem;
-}
-
-.loginContainer .btnGoogle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  width: 100%;
-  padding: 0.9rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
-  background: #fff;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.loginContainer .btnGoogle:hover {
-  border-color: #6c63ff;
-  background: #f8f7ff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.15);
-}
-
-.loginContainer .divider {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 1.5rem 0;
-  color: #bbb;
-  font-size: 0.85rem;
-}
-
-.loginContainer .divider::before,
-.loginContainer .divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #eee;
-}
-
-.loginContainer .btnPassword {
-  background: none;
-  border: none;
-  color: #6c63ff;
-  font-size: 0.9rem;
-  cursor: pointer;
-  text-decoration: underline;
-  transition: color 0.2s;
-}
-
-.loginContainer .btnPassword:hover {
-  color: #4a3fcf;
-}
-
-/* ============================================
-   RESPONSIVIDADE
-   ============================================ */
-
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
+"use client";
+
+import { useState, useEffect } from "react";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import styles from "./colaborador.module.css";
+
+export default function ColaboradorPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const [pacientes, setPacientes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [salvando, setSalvando] = useState(false);
+  const [mensagem, setMensagem] = useState("");
+  const [erro, setErro] = useState("");
+  const [form, setForm] = useState({
+    pacienteId: "",
+    turno: "Diurno",
+    pressaoArterial: "",
+    temperatura: "",
+    frequenciaCardiaca: "",
+    glicemia: "",
+    banho: false,
+    alimentacao: "",
+    eliminacoes: "",
+    medicacoes: "",
+    relatoPlantao: "",
+  });
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/colaborador/login");
+      return;
+    }
+
+    if (status === "authenticated") {
+      carregarPacientes();
+    }
+  }, [status, router]);
+
+  const carregarPacientes = async () => {
+    try {
+      const res = await fetch("/api/pacientes");
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        setPacientes(data);
+        // Se o colaborador tem um paciente designado, seleciona automaticamente
+        if (session?.user?.pacienteId) {
+          setForm(prev => ({
+            ...prev,
+            pacienteId: String(session.user.pacienteId)
+          }));
+        }
+      }
+    } catch (err) {
+      console.error("Erro ao carregar pacientes:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm(prev => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSalvando(true);
+    setErro("");
+    setMensagem("");
+
+    // Validações
+    if (!form.pacienteId) {
+      setErro("Por favor, selecione um paciente.");
+      setSalvando(false);
+      return;
+    }
+
+    if (!form.turno) {
+      setErro("Por favor, selecione o turno.");
+      setSalvando(false);
+      return;
+    }
+
+    try {
+      const payload = {
+        ...form,
+        pacienteId: parseInt(form.pacienteId),
+        cuidadorId: session?.user?.id,
+        cuidadorNome: session?.user?.name,
+        pacienteNome: pacientes.find(p => p.id === parseInt(form.pacienteId))?.name || "",
+      };
+
+      const res = await fetch("/api/relatorios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMensagem("✅ Relatório enviado com sucesso!");
+        // Limpa os campos opcionais, mantendo paciente e turno
+        setForm(prev => ({
+          ...prev,
+          pressaoArterial: "",
+          temperatura: "",
+          frequenciaCardiaca: "",
+          glicemia: "",
+          banho: false,
+          alimentacao: "",
+          eliminacoes: "",
+          medicacoes: "",
+          relatoPlantao: "",
+        }));
+      } else {
+        setErro(data.error || "Erro ao enviar relatório.");
+      }
+    } catch (err) {
+      console.error("Erro ao salvar:", err);
+      setErro("Erro de conexão com o servidor.");
+    } finally {
+      setSalvando(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.loading}>
+          <div className={styles.loadingSpinner}></div>
+          <p>Carregando...</p>
+        </div>
+      </div>
+    );
   }
 
-  .painel {
-    padding: 1.5rem;
+  if (status === "authenticated") {
+    return (
+      <div className={styles.container}>
+        <div className={styles.painel}>
+          {/* CABEÇALHO */}
+          <div className={styles.header}>
+            <h1>🩺 <span>Serenya</span></h1>
+            <p className={styles.subtitle}>Portal do Colaborador</p>
+            <div className={styles.userInfo}>
+              <span className={styles.userName}>👤 {session?.user?.name}</span>
+              <button 
+                onClick={() => signOut({ callbackUrl: "/colaborador/login" })}
+                className={styles.btnSair}
+              >
+                Sair
+              </button>
+            </div>
+          </div>
+
+          {/* MENSAGENS */}
+          {mensagem && <div className={styles.success}>{mensagem}</div>}
+          {erro && <div className={styles.error}>{erro}</div>}
+
+          {/* FORMULÁRIO */}
+          <form onSubmit={handleSubmit} className={styles.form}>
+            {/* SEÇÃO 1: Identificação do Plantão */}
+            <div className={styles.sectionTitle}>📋 Identificação do Plantão</div>
+            <div className={styles.formGrid}>
+              <div className={styles.formGroup}>
+                <label className={styles.labelRequired}>Paciente</label>
+                <select
+                  name="pacienteId"
+                  value={form.pacienteId}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Selecione o paciente...</option>
+                  {pacientes.map((p) => (
+                    <option key={p.id} value={String(p.id)}>
+                      {p.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.labelRequired}>Turno</label>
+                <select
+                  name="turno"
+                  value={form.turno}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="Diurno">Diurno (12h)</option>
+                  <option value="Noturno">Noturno (12h)</option>
+                </select>
+              </div>
+            </div>
+
+            {/* SEÇÃO 2: Sinais Vitais */}
+            <div className={styles.sectionTitle}>❤️ Sinais Vitais</div>
+            <div className={styles.formGrid}>
+              <div className={styles.formGroup}>
+                <label>Pressão Arterial</label>
+                <input
+                  type="text"
+                  name="pressaoArterial"
+                  placeholder="Ex: 120/80"
+                  value={form.pressaoArterial}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label>Temperatura</label>
+                <input
+                  type="text"
+                  name="temperatura"
+                  placeholder="Ex: 36.5 °C"
+                  value={form.temperatura}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label>Frequência Cardíaca</label>
+                <input
+                  type="text"
+                  name="frequenciaCardiaca"
+                  placeholder="Ex: 75 bpm"
+                  value={form.frequenciaCardiaca}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label>Glicemia</label>
+                <input
+                  type="text"
+                  name="glicemia"
+                  placeholder="Ex: 95 mg/dL"
+                  value={form.glicemia}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            {/* SEÇÃO 3: Cuidados */}
+            <div className={styles.sectionTitle}>🛁 Cuidados</div>
+            <div className={styles.formGrid}>
+              <div className={styles.formGroup}>
+                <label className={styles.checkboxLabel}>
+                  <input
+                    type="checkbox"
+                    name="banho"
+                    checked={form.banho}
+                    onChange={handleChange}
+                  />
+                  Banho realizado
+                </label>
+              </div>
+            </div>
+
+            {/* SEÇÃO 4: Observações */}
+            <div className={styles.sectionTitle}>📝 Observações</div>
+            <div className={styles.formGrid}>
+              <div className={styles.formGroup}>
+                <label>Alimentação</label>
+                <textarea
+                  name="alimentacao"
+                  placeholder="Descreva como foi a alimentação..."
+                  value={form.alimentacao}
+                  onChange={handleChange}
+                  rows={2}
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label>Eliminações</label>
+                <textarea
+                  name="eliminacoes"
+                  placeholder="Descreva as eliminações..."
+                  value={form.eliminacoes}
+                  onChange={handleChange}
+                  rows={2}
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label>Medicações</label>
+                <textarea
+                  name="medicacoes"
+                  placeholder="Medicações administradas..."
+                  value={form.medicacoes}
+                  onChange={handleChange}
+                  rows={2}
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label>Relato do Plantão</label>
+                <textarea
+                  name="relatoPlantao"
+                  placeholder="Relato geral do plantão..."
+                  value={form.relatoPlantao}
+                  onChange={handleChange}
+                  rows={2}
+                />
+              </div>
+            </div>
+
+            {/* BOTÕES */}
+            <div className={styles.formActions}>
+              <button 
+                type="submit" 
+                className={styles.btnPrimary}
+                disabled={salvando}
+              >
+                {salvando ? "⏳ Enviando..." : "📤 Enviar Relatório"}
+              </button>
+              <button 
+                type="reset" 
+                className={styles.btnSecondary}
+                onClick={() => {
+                  setForm(prev => ({
+                    ...prev,
+                    pressaoArterial: "",
+                    temperatura: "",
+                    frequenciaCardiaca: "",
+                    glicemia: "",
+                    banho: false,
+                    alimentacao: "",
+                    eliminacoes: "",
+                    medicacoes: "",
+                    relatoPlantao: "",
+                  }));
+                  setMensagem("");
+                  setErro("");
+                }}
+              >
+                🔄 Limpar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
   }
 
-  .header h1 {
-    font-size: 1.6rem;
-  }
-
-  .formActions {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .formActions button {
-    width: 100%;
-    min-width: unset;
-  }
-
-  .loginContainer {
-    padding: 2rem 1.5rem;
-    margin: 0 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .header h1 {
-    font-size: 1.3rem;
-  }
-
-  .painel {
-    padding: 1rem;
-    border-radius: 12px;
-  }
-
-  .formGroup :global(input),
-  .formGroup :global(select),
-  .formGroup :global(textarea) {
-    font-size: 0.9rem;
-    padding: 0.6rem 0.8rem;
-  }
-
-  .loginContainer .logo {
-    font-size: 2rem;
-  }
+  return null;
 }
