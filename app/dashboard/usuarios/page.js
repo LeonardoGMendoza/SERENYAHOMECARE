@@ -5,20 +5,13 @@ import styles from './usuarios.module.css';
 
 export default function UsuariosPage() {
   const [usuarios, setUsuarios] = useState([]);
-<<<<<<< HEAD
-=======
   const [pacientes, setPacientes] = useState([]);
->>>>>>> desenvolvimento
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
   const [modalReset, setModalReset] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   
-<<<<<<< HEAD
-  const [form, setForm] = useState({ name: '', email: '', role: 'cuidador', password: '' });
-=======
   const [form, setForm] = useState({ name: '', email: '', role: 'cuidador', password: '', pacienteId: '' });
->>>>>>> desenvolvimento
   const [resetPass, setResetPass] = useState('');
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState('');
@@ -36,8 +29,6 @@ export default function UsuariosPage() {
 
   useEffect(() => {
     carregarUsuarios();
-<<<<<<< HEAD
-=======
 
     // Carregar lista de pacientes para o dropdown
     fetch('/api/pacientes')
@@ -46,7 +37,6 @@ export default function UsuariosPage() {
         setPacientes(Array.isArray(data) ? data : []);
       })
       .catch(err => console.error('Erro ao buscar pacientes:', err));
->>>>>>> desenvolvimento
   }, []);
 
   const handleSalvar = async (e) => {
@@ -54,20 +44,6 @@ export default function UsuariosPage() {
     setSalvando(true);
     setErro('');
     try {
-<<<<<<< HEAD
-      const res = await fetch('/api/usuarios', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setUsuarios(prev => [data, ...prev]);
-        setModal(false);
-        setForm({ name: '', email: '', role: 'cuidador', password: '' });
-      } else {
-        setErro(data.error || 'Erro ao cadastrar usuário.');
-=======
       const isEdit = !!selectedUser;
       const url = isEdit ? `/api/usuarios/${selectedUser.id}` : '/api/usuarios';
       const method = isEdit ? 'PATCH' : 'POST';
@@ -100,7 +76,6 @@ export default function UsuariosPage() {
         setForm({ name: '', email: '', role: 'cuidador', password: '', pacienteId: '' });
       } else {
         setErro(data.error || 'Erro ao salvar colaborador.');
->>>>>>> desenvolvimento
       }
     } catch (err) {
       console.error(err);
@@ -110,8 +85,6 @@ export default function UsuariosPage() {
     }
   };
 
-<<<<<<< HEAD
-=======
   const handleEditClick = (u) => {
     setSelectedUser(u);
     setForm({
@@ -125,7 +98,6 @@ export default function UsuariosPage() {
     setModal(true);
   };
 
->>>>>>> desenvolvimento
   const handleResetPassword = async (e) => {
     e.preventDefault();
     if (!resetPass) return;
@@ -176,11 +148,7 @@ export default function UsuariosPage() {
             <h1 className={styles.title}>Gerenciamento de Equipe</h1>
             <p className={styles.subtitle}>Cadastre as contas de Gmail para liberar o botão "Entrar com Google" para a sua equipe.</p>
           </div>
-<<<<<<< HEAD
-          <button className={styles.btnNovo} onClick={() => { setErro(''); setModal(true); }}>
-=======
           <button className={styles.btnNovo} onClick={() => { setSelectedUser(null); setErro(''); setForm({ name: '', email: '', role: 'cuidador', password: '', pacienteId: '' }); setModal(true); }}>
->>>>>>> desenvolvimento
             👤 Autorizar Novo Membro
           </button>
         </div>
@@ -192,11 +160,7 @@ export default function UsuariosPage() {
             <div className={styles.empty}>
               <div className={styles.emptyIcon}>👥</div>
               <p>Nenhuma conta cadastrada além das diretoras fixas.</p>
-<<<<<<< HEAD
-              <button className={styles.btnNovo} onClick={() => setModal(true)}>Cadastrar primeira conta</button>
-=======
               <button className={styles.btnNovo} onClick={() => { setSelectedUser(null); setModal(true); }}>Cadastrar primeira conta</button>
->>>>>>> desenvolvimento
             </div>
           ) : (
             <table className={styles.table}>
@@ -205,12 +169,8 @@ export default function UsuariosPage() {
                   <th>Nome</th>
                   <th>Gmail Autorizado</th>
                   <th>Cargo / Perfil</th>
-<<<<<<< HEAD
-                  <th style={{ width: '150px', textAlign: 'right' }}>Ações</th>
-=======
                   <th>Paciente Designado</th>
                   <th style={{ width: '180px', textAlign: 'right' }}>Ações</th>
->>>>>>> desenvolvimento
                 </tr>
               </thead>
               <tbody>
@@ -230,20 +190,15 @@ export default function UsuariosPage() {
                         {u.role === 'enfermeira' && '👩‍⚕️ Enfermeiro(a)'}
                       </span>
                     </td>
-<<<<<<< HEAD
-=======
                     <td>
                       <span style={{ fontWeight: 600, color: u.paciente?.nome ? '#D94F8A' : '#777', fontSize: '0.9rem' }}>
                         {u.paciente?.nome ? `👤 ${u.paciente.nome}` : 'Livre (Sem designação)'}
                       </span>
                     </td>
->>>>>>> desenvolvimento
                     <td style={{ textAlign: 'right' }}>
                       <div className={styles.actionCell}>
                         <button
                           className={styles.actionBtn}
-<<<<<<< HEAD
-=======
                           onClick={() => handleEditClick(u)}
                           title="Editar Cadastro / Vincular Paciente"
                         >
@@ -251,7 +206,6 @@ export default function UsuariosPage() {
                         </button>
                         <button
                           className={styles.actionBtn}
->>>>>>> desenvolvimento
                           onClick={() => { setSelectedUser(u); setErro(''); setModalReset(true); }}
                           title="Redefinir Senha de Backup"
                         >
@@ -273,19 +227,11 @@ export default function UsuariosPage() {
           )}
         </div>
 
-<<<<<<< HEAD
-        {/* Modal: Novo Usuário */}
-        {modal && (
-          <div className={styles.overlay} onClick={() => setModal(false)}>
-            <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-              <h2 className={styles.modalTitle}>Autorizar Colaborador</h2>
-=======
         {/* Modal: Novo/Editar Usuário */}
         {modal && (
           <div className={styles.overlay} onClick={() => setModal(false)}>
             <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
               <h2 className={styles.modalTitle}>{selectedUser ? `Editar ${selectedUser.name}` : 'Autorizar Colaborador'}</h2>
->>>>>>> desenvolvimento
               <form onSubmit={handleSalvar} className={styles.modalForm}>
                 
                 <div className={styles.googleTip}>
@@ -330,8 +276,6 @@ export default function UsuariosPage() {
                   </select>
                 </div>
 
-<<<<<<< HEAD
-=======
                 {/* Dropdown de Paciente Designado */}
                 {form.role !== 'diretora' && (
                   <div className={styles.formGroup}>
@@ -349,17 +293,12 @@ export default function UsuariosPage() {
                   </div>
                 )}
 
->>>>>>> desenvolvimento
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Senha de Backup (Opcional)</label>
                   <input
                     type="password"
                     className={styles.input}
-<<<<<<< HEAD
-                    placeholder="Senha para login tradicional sem Google"
-=======
                     placeholder={selectedUser ? "Deixe em branco para não alterar" : "Senha para login sem Google"}
->>>>>>> desenvolvimento
                     value={form.password}
                     onChange={e => setForm({ ...form, password: e.target.value })}
                   />
@@ -370,11 +309,7 @@ export default function UsuariosPage() {
                 <div className={styles.modalBtns}>
                   <button type="button" className={styles.btnCancelar} onClick={() => setModal(false)}>Cancelar</button>
                   <button type="submit" className={styles.btnSalvar} disabled={salvando}>
-<<<<<<< HEAD
-                    {salvando ? 'Salvando...' : 'Autorizar Acesso'}
-=======
                     {salvando ? 'Salvando...' : 'Salvar Alterações'}
->>>>>>> desenvolvimento
                   </button>
                 </div>
               </form>

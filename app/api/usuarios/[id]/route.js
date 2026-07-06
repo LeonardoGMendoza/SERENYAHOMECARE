@@ -19,11 +19,7 @@ export async function PATCH(req, { params }) {
 
     const { id } = await params;
     const body = await req.json();
-<<<<<<< HEAD
-    const { name, email, role, password } = body;
-=======
     const { name, email, role, password, pacienteId } = body;
->>>>>>> desenvolvimento
 
     const dataToUpdate = {};
     if (name) dataToUpdate.name = name;
@@ -32,12 +28,9 @@ export async function PATCH(req, { params }) {
     if (password) {
       dataToUpdate.password = await bcrypt.hash(password, 10);
     }
-<<<<<<< HEAD
-=======
     if (pacienteId !== undefined) {
       dataToUpdate.pacienteId = pacienteId ? parseInt(pacienteId) : null;
     }
->>>>>>> desenvolvimento
 
     const usuario = await prisma.user.update({
       where: { id: parseInt(id) },
@@ -47,15 +40,12 @@ export async function PATCH(req, { params }) {
         name: true,
         email: true,
         role: true,
-<<<<<<< HEAD
-=======
         pacienteId: true,
         paciente: {
           select: {
             nome: true
           }
         },
->>>>>>> desenvolvimento
         createdAt: true,
       }
     });
