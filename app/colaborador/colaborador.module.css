@@ -1,92 +1,149 @@
-/* Container Principal */
+/* ============================================
+   LAYOUT PRINCIPAL CENTRALIZADO
+   ============================================ */
+
+/* Container Principal - Centralizado */
 .container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9edf5 100%);
 }
 
-/* Cabeçalho */
+/* ============================================
+   CARDS E PAINÉIS
+   ============================================ */
+
+.painel {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 10px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.painel:hover {
+  box-shadow: 0 20px 60px rgba(108, 99, 255, 0.12), 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================
+   CABEÇALHO - Centralizado
+   ============================================ */
+
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
   padding-bottom: 1.5rem;
   border-bottom: 2px solid #f0f0f0;
 }
 
-.title {
-  font-size: 2rem;
+.header h1 {
+  font-size: 2.2rem;
   font-weight: 700;
   color: #1a1a2e;
-  margin: 0;
+  margin: 0 0 0.3rem 0;
+  letter-spacing: -0.5px;
 }
 
-.subtitle {
+.header h1 span {
+  background: linear-gradient(135deg, #6c63ff, #4a3fcf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header .subtitle {
   font-size: 1rem;
-  color: #666;
-  margin: 0.25rem 0 0 0;
+  color: #888;
+  margin: 0.3rem 0 0 0;
 }
 
+/* Badge de Status */
 .statusBadge {
   display: inline-block;
-  padding: 0.5rem 1.2rem;
+  padding: 0.4rem 1.5rem;
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 600;
   background: #e8f5e9;
   color: #2e7d32;
+  margin-top: 0.8rem;
 }
 
-/* Cards de Status */
-.statusGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+/* ============================================
+   INFORMAÇÕES DO USUÁRIO - Centralizado
+   ============================================ */
+
+.userInfo {
+  text-align: center;
+  background: #f8f9fc;
+  border-radius: 16px;
+  padding: 1.2rem;
   margin-bottom: 2rem;
+  border: 1px solid #eee;
 }
 
-.statusCard {
-  background: #fff;
-  border-radius: 12px;
-  padding: 1.2rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  border: 1px solid #eee;
+.userInfo .userName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.userInfo .userEmail {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.btnSair {
+  background: none;
+  border: none;
+  color: #ff4757;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 1rem;
+  transition: color 0.2s;
+}
+
+.btnSair:hover {
+  color: #e63545;
+}
+
+/* ============================================
+   TÍTULOS DAS SEÇÕES - Centralizado
+   ============================================ */
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 1.5rem 0 1rem 0;
   text-align: center;
 }
 
-.statusCard .label {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.sectionSubtitle {
+  text-align: center;
   color: #888;
-  margin-bottom: 0.25rem;
-}
-
-.statusCard .value {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1a1a2e;
-}
-
-/* Formulário */
-.form {
-  background: #fff;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  border: 1px solid #eee;
-  margin-bottom: 2rem;
-}
-
-.formTitle {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #1a1a2e;
+  font-size: 0.9rem;
   margin-bottom: 1.5rem;
+}
+
+/* ============================================
+   GRID DO FORMULÁRIO - Centralizado
+   ============================================ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .formGrid {
@@ -108,22 +165,33 @@
 }
 
 .formGroup label {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: #333;
+  color: #444;
+  letter-spacing: 0.3px;
 }
 
-/* INPUTS - Corrigido com :global */
+.formGroup .labelRequired::after {
+  content: " *";
+  color: #ff4757;
+  font-weight: 600;
+}
+
+/* ============================================
+   INPUTS - ESTILO UNIFORME
+   ============================================ */
+
 .formGroup :global(input),
 .formGroup :global(select),
 .formGroup :global(textarea) {
-  padding: 0.7rem 1rem;
-  border: 1.5px solid #ddd;
-  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
   font-size: 0.95rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  background: #fafafa;
+  transition: all 0.25s ease;
+  background: #fafbfc;
   width: 100%;
+  font-family: inherit;
 }
 
 .formGroup :global(input:focus),
@@ -131,8 +199,8 @@
 .formGroup :global(textarea:focus) {
   outline: none;
   border-color: #6c63ff;
-  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
-  background: #fff;
+  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.12);
+  background: #ffffff;
 }
 
 .formGroup :global(textarea) {
@@ -140,13 +208,19 @@
   min-height: 80px;
 }
 
-/* CHECKBOX - Corrigido com :global */
+/* ============================================
+   CHECKBOX - Centralizado e Estilizado
+   ============================================ */
+
 .formGroup :global(input[type="checkbox"]) {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   accent-color: #6c63ff;
   cursor: pointer;
-  margin-right: 0.5rem;
+  margin-right: 0.6rem;
+  border-radius: 4px;
+  border: 2px solid #d0d0d0;
+  transition: all 0.2s ease;
 }
 
 .checkboxLabel {
@@ -156,23 +230,41 @@
   font-size: 0.95rem;
   color: #333;
   cursor: pointer;
+  padding: 0.3rem 0;
 }
 
-/* Botões */
+/* ============================================
+   BOTÕES - Centralizados
+   ============================================ */
+
+.formActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #f0f0f0;
+  flex-wrap: wrap;
+}
+
 .btnPrimary {
-  background: #6c63ff;
+  background: linear-gradient(135deg, #6c63ff, #5a52d5);
   color: #fff;
   border: none;
-  padding: 0.8rem 2rem;
-  border-radius: 8px;
+  padding: 0.85rem 2.5rem;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.25);
+  min-width: 180px;
 }
 
 .btnPrimary:hover {
-  background: #5a52d5;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.35);
+  background: linear-gradient(135deg, #7a72ff, #5a52d5);
 }
 
 .btnPrimary:active {
@@ -182,83 +274,82 @@
 .btnPrimary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
 
 .btnSecondary {
   background: transparent;
   color: #666;
-  border: 1.5px solid #ddd;
-  padding: 0.8rem 2rem;
-  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  padding: 0.85rem 2.5rem;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
+  transition: all 0.25s ease;
+  min-width: 180px;
 }
 
 .btnSecondary:hover {
   background: #f5f5f5;
   border-color: #bbb;
+  transform: translateY(-2px);
 }
 
 .btnDanger {
   background: #ff4757;
   color: #fff;
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.25s ease;
 }
 
 .btnDanger:hover {
   background: #e63545;
+  transform: translateY(-2px);
 }
 
-/* Ações do Formulário */
-.formActions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #eee;
-  flex-wrap: wrap;
-}
+/* ============================================
+   MENSAGENS
+   ============================================ */
 
-/* Mensagens */
 .success {
   background: #e8f5e9;
   color: #2e7d32;
-  padding: 0.8rem 1.2rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
   font-size: 0.95rem;
+  text-align: center;
+  border-left: 4px solid #2e7d32;
 }
 
 .error {
   background: #ffebee;
   color: #c62828;
-  padding: 0.8rem 1.2rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
   font-size: 0.95rem;
+  text-align: center;
+  border-left: 4px solid #c62828;
 }
 
-/* Lista de Relatórios */
-.sectionTitle {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #1a1a2e;
-  margin: 2rem 0 1rem 0;
-}
+/* ============================================
+   TABELA DE RELATÓRIOS
+   ============================================ */
 
 .tableWrapper {
   overflow-x: auto;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid #eee;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
 .table {
@@ -268,16 +359,16 @@
 }
 
 .table th {
-  background: #f8f9fa;
+  background: #f8f9fc;
   text-align: left;
-  padding: 0.8rem 1rem;
+  padding: 0.9rem 1.2rem;
   font-weight: 600;
   color: #444;
   border-bottom: 2px solid #eee;
 }
 
 .table td {
-  padding: 0.8rem 1rem;
+  padding: 0.9rem 1.2rem;
   border-bottom: 1px solid #f0f0f0;
   color: #333;
 }
@@ -288,7 +379,7 @@
 
 .table .badge {
   display: inline-block;
-  padding: 0.2rem 0.7rem;
+  padding: 0.2rem 0.8rem;
   border-radius: 50px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -314,9 +405,13 @@
   color: #2e7d32;
 }
 
-/* Loading */
+/* ============================================
+   LOADING E EMPTY STATE - Centralizado
+   ============================================ */
+
 .loading {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 300px;
@@ -324,10 +419,24 @@
   color: #888;
 }
 
-/* Empty State */
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f0f0f0;
+  border-top: 4px solid #6c63ff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .emptyState {
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 3rem 1.5rem;
   color: #888;
 }
 
@@ -337,35 +446,150 @@
   margin-bottom: 0.5rem;
 }
 
-/* Responsivo */
-@media (max-width: 600px) {
+.emptyState p {
+  color: #aaa;
+}
+
+/* ============================================
+   LOGIN - Página Centralizada
+   ============================================ */
+
+.loginContainer {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.loginContainer .logo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+
+.loginContainer .logo span {
+  background: linear-gradient(135deg, #6c63ff, #4a3fcf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.loginContainer .loginSubtitle {
+  color: #888;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.loginContainer .btnGoogle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: 100%;
+  padding: 0.9rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.loginContainer .btnGoogle:hover {
+  border-color: #6c63ff;
+  background: #f8f7ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.15);
+}
+
+.loginContainer .divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  color: #bbb;
+  font-size: 0.85rem;
+}
+
+.loginContainer .divider::before,
+.loginContainer .divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+.loginContainer .btnPassword {
+  background: none;
+  border: none;
+  color: #6c63ff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.loginContainer .btnPassword:hover {
+  color: #4a3fcf;
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+
+@media (max-width: 768px) {
   .container {
     padding: 1rem;
   }
-  
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
+
+  .painel {
+    padding: 1.5rem;
   }
-  
-  .title {
-    font-size: 1.5rem;
+
+  .header h1 {
+    font-size: 1.6rem;
   }
-  
-  .form {
-    padding: 1.2rem;
-  }
-  
+
   .formActions {
     flex-direction: column;
+    align-items: center;
   }
-  
+
   .formActions button {
     width: 100%;
-    justify-content: center;
+    min-width: unset;
   }
-  
-  .statusGrid {
-    grid-template-columns: 1fr 1fr;
+
+  .loginContainer {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.3rem;
+  }
+
+  .painel {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .formGroup :global(input),
+  .formGroup :global(select),
+  .formGroup :global(textarea) {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .loginContainer .logo {
+    font-size: 2rem;
   }
 }
