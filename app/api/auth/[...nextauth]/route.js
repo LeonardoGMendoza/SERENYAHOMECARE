@@ -40,7 +40,7 @@ export const authOptions = {
         // 2. Verificar no banco de dados (cuidadoras/outros com senha)
         const dbUser = await prisma.user.findUnique({
           where: { email: credentials.email },
-          include: { paciente: true }
+          include: { pacientesDesignados: true }
         });
 
         if (dbUser) {
@@ -51,8 +51,7 @@ export const authOptions = {
               name: dbUser.name,
               email: dbUser.email,
               role: dbUser.role,
-              pacienteId: dbUser.pacienteId,
-              pacienteNome: dbUser.paciente?.nome || null
+              pacientesDesignados: dbUser.pacientesDesignados
             };
           }
         }
@@ -80,13 +79,12 @@ export const authOptions = {
         // Consultar no banco se é cuidadora cadastrada
         const dbUser = await prisma.user.findUnique({
           where: { email: user.email },
-          include: { paciente: true }
+          include: { pacientesDesignados: true }
         });
 
         if (dbUser) {
-          user.role = dbUser.role; // ex: 'cuidador', 'tecnico', 'enfermeira'
-          user.pacienteId = dbUser.pacienteId;
-          user.pacienteNome = dbUser.paciente?.nome || null;
+          user.role = dbUser.role;
+          user.pacientesDesignados = dbUser.pacientesDesignados;
           return true;
         }
 
@@ -99,8 +97,7 @@ export const authOptions = {
         token.role = user.role;
         token.image = user.image;
         token.id = user.id;
-        token.pacienteId = user.pacienteId;
-        token.pacienteNome = user.pacienteNome;
+        token.pacientesDesignados = user.pacientesDesignados || [];
       }
       return token;
     },
@@ -109,19 +106,17 @@ export const authOptions = {
         session.user.id = token.id;
         session.user.role = token.role;
         session.user.image = token.image;
-        session.user.pacienteId = token.pacienteId;
-        session.user.pacienteNome = token.pacienteNome;
+        session.user.pacientesDesignados = token.pacientesDesignados || [];
 
         // Buscar atualizações do paciente designado em tempo real
         if (token.role !== 'diretora' && token.email) {
           try {
             const dbUser = await prisma.user.findUnique({
               where: { email: token.email },
-              include: { paciente: true }
+              include: { pacientesDesignados: true }
             });
             if (dbUser) {
-              session.user.pacienteId = dbUser.pacienteId;
-              session.user.pacienteNome = dbUser.paciente?.nome || null;
+              session.user.pacientesDesignados = dbUser.pacientesDesignados || [];
             }
           } catch (e) {
             console.error('Erro ao buscar paciente em tempo real na sessão:', e);

@@ -8,14 +8,15 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
-  name        String
-  email       String    @unique
-  password    String
-  role        String    @default("admin")
-  pacienteId  Int?
-  paciente    Paciente? @relation(fields: [pacienteId], references: [id], onDelete: SetNull)
-  createdAt   DateTime  @default(now())
+  id                  Int       @id @default(autoincrement())
+  name                String
+  email               String    @unique
+  password            String
+  role                String    @default("admin")
+  pacienteId          Int?
+  paciente            Paciente? @relation("UserPacientePrincipal", fields: [pacienteId], references: [id], onDelete: SetNull)
+  pacientesDesignados Paciente[] @relation("UserPacientesMultiplos")
+  createdAt           DateTime  @default(now())
 }
 
 model Paciente {
@@ -31,7 +32,8 @@ model Paciente {
   emailFamiliar String?
   status       String   @default("Ativo")
   plano        String?
-  users        User[]
+  usuariosPrincipal User[] @relation("UserPacientePrincipal")
+  cuidadoresDesignados User[] @relation("UserPacientesMultiplos")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }

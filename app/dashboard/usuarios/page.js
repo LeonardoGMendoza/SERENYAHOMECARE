@@ -11,7 +11,7 @@ export default function UsuariosPage() {
   const [modalReset, setModalReset] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   
-  const [form, setForm] = useState({ name: '', email: '', role: 'cuidador', password: '', pacienteId: '' });
+  const [form, setForm] = useState({ name: '', email: '', role: 'cuidador', password: '', pacientesIds: [] });
   const [resetPass, setResetPass] = useState('');
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState('');
@@ -39,6 +39,15 @@ export default function UsuariosPage() {
       .catch(err => console.error('Erro ao buscar pacientes:', err));
   }, []);
 
+  const togglePaciente = (id) => {
+    setForm(prev => ({
+      ...prev,
+      pacientesIds: prev.pacientesIds.includes(id)
+        ? prev.pacientesIds.filter(i => i !== id)
+        : [...prev.pacientesIds, id]
+    }));
+  };
+
   const handleSalvar = async (e) => {
     e.preventDefault();
     setSalvando(true);
@@ -52,7 +61,7 @@ export default function UsuariosPage() {
         name: form.name,
         email: form.email,
         role: form.role,
-        pacienteId: form.role !== 'diretora' && form.pacienteId ? parseInt(form.pacienteId) : null
+        pacientesIds: form.role !== 'diretora' ? form.pacientesIds : []
       };
 
       if (form.password) {
@@ -73,7 +82,7 @@ export default function UsuariosPage() {
         }
         setModal(false);
         setSelectedUser(null);
-        setForm({ name: '', email: '', role: 'cuidador', password: '', pacienteId: '' });
+        setForm({ name: '', email: '', role: 'cuidador', password: '', pacientesIds: [] });
       } else {
         setErro(data.error || 'Erro ao salvar colaborador.');
       }
@@ -92,7 +101,7 @@ export default function UsuariosPage() {
       email: u.email,
       role: u.role,
       password: '',
-      pacienteId: u.pacienteId ? String(u.pacienteId) : ''
+      pacientesIds: u.pacientesDesignados ? u.pacientesDesignados.map(p => p.id) : []
     });
     setErro('');
     setModal(true);
@@ -148,7 +157,7 @@ export default function UsuariosPage() {
             <h1 className={styles.title}>Gerenciamento de Equipe</h1>
             <p className={styles.subtitle}>Cadastre as contas de Gmail para liberar o botão "Entrar com Google" para a sua equipe.</p>
           </div>
-          <button className={styles.btnNovo} onClick={() => { setSelectedUser(null); setErro(''); setForm({ name: '', email: '', role: 'cuidador', password: '', pacienteId: '' }); setModal(true); }}>
+          <button className={styles.btnNovo} onClick={() => { setSelectedUser(null); setErro(''); setForm({ name: '', email: '', role: 'cuidador', password: '', pacientesIds: [] }); setModal(true); }}>
             👤 Autorizar Novo Membro
           </button>
         </div>
@@ -191,8 +200,10 @@ export default function UsuariosPage() {
                       </span>
                     </td>
                     <td>
-                      <span style={{ fontWeight: 600, color: u.paciente?.nome ? '#D94F8A' : '#777', fontSize: '0.9rem' }}>
-                        {u.paciente?.nome ? `👤 ${u.paciente.nome}` : 'Livre (Sem designação)'}
+                      <span style={{ fontWeight: 600, color: u.pacientesDesignados?.length > 0 ? '#D94F8A' : '#777', fontSize: '0.9rem' }}>
+                        {u.pacientesDesignados?.length > 0
+                          ? u.pacientesDesignados.map(p => `👤 ${p.nome}`).join(', ')
+                          : 'Livre (Sem designação)'}
                       </span>
                     </td>
                     <td style={{ textAlign: 'right' }}>
@@ -276,20 +287,27 @@ export default function UsuariosPage() {
                   </select>
                 </div>
 
-                {/* Dropdown de Paciente Designado */}
+                {/* Checkboxes de Pacientes Designados */}
                 {form.role !== 'diretora' && (
                   <div className={styles.formGroup}>
-                    <label className={styles.label}>Paciente Designado (Opcional)</label>
-                    <select
-                      className={styles.select}
-                      value={form.pacienteId}
-                      onChange={e => setForm({ ...form, pacienteId: e.target.value })}
-                    >
-                      <option value="">-- Deixar livre (Cuidadora Volante / Sem designação) --</option>
+                    <label className={styles.label}>Pacientes Designados (pode marcar vários)</label>
+                    <div style={{ border: '1px solid #e2e8f0', borderRadius: '8px', padding: '10px', maxHeight: '180px', overflowY: 'auto', background: '#fafafa' }}>
+                      {pacientes.length === 0 && <p style={{ color: '#999', fontSize: '0.85rem' }}>Nenhum paciente cadastrado ainda.</p>}
                       {pacientes.map(p => (
-                        <option key={p.id} value={p.id}>👤 {p.nome}</option>
+                        <label key={p.id} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 4px', cursor: 'pointer', borderRadius: '4px' }}>
+                          <input
+                            type="checkbox"
+                            checked={form.pacientesIds.includes(p.id)}
+                            onChange={() => togglePaciente(p.id)}
+                            style={{ accentColor: '#D94F8A', width: '16px', height: '16px' }}
+                          />
+                          <span style={{ fontSize: '0.9rem', color: '#444' }}>👤 {p.nome}</span>
+                        </label>
                       ))}
-                    </select>
+                    </div>
+                    {form.pacientesIds.length === 0 && (
+                      <p style={{ fontSize: '0.78rem', color: '#999', marginTop: '4px' }}>Nenhum selecionado — cuidadora volante / sem designação.</p>
+                    )}
                   </div>
                 )}
 

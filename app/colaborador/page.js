@@ -26,27 +26,37 @@ export default function ColaboradorPortal() {
     relatoPlantao: ''
   });
 
-  // Carregar pacientes apenas se o usuário estiver autenticado
+  // Carregar pacientes apenas se o usuário for volante (sem pacientes designados)
   useEffect(() => {
     if (status === 'authenticated') {
-      fetch('/api/pacientes')
-        .then(r => r.json())
-        .then(data => {
-          setPacientes(Array.isArray(data) ? data : []);
-          setLoadingPacientes(false);
-        })
-        .catch(() => setLoadingPacientes(false));
+      const designados = session?.user?.pacientesDesignados || [];
+      if (designados.length === 0) {
+        // cuidadora volante: busca todos os pacientes
+        fetch('/api/pacientes')
+          .then(r => r.json())
+          .then(data => {
+            setPacientes(Array.isArray(data) ? data : []);
+            setLoadingPacientes(false);
+          })
+          .catch(() => setLoadingPacientes(false));
+      } else {
+        setPacientes(designados);
+        setLoadingPacientes(false);
+      }
     }
-  }, [status]);
+  }, [status, session]);
 
-  // Pré-selecionar o paciente designado do colaborador logado
+  // Pré-selecionar se só tiver 1 paciente designado
   useEffect(() => {
-    if (status === 'authenticated' && session?.user?.pacienteId) {
-      setForm(prev => ({
-        ...prev,
-        pacienteId: String(session.user.pacienteId),
-        pacienteNome: session.user.pacienteNome || ''
-      }));
+    if (status === 'authenticated') {
+      const designados = session?.user?.pacientesDesignados || [];
+      if (designados.length === 1) {
+        setForm(prev => ({
+          ...prev,
+          pacienteId: String(designados[0].id),
+          pacienteNome: designados[0].nome
+        }));
+      }
     }
   }, [status, session]);
 
@@ -91,9 +101,10 @@ export default function ColaboradorPortal() {
 
   const novaResposta = () => {
     setSuccess(false);
+    const designados = session?.user?.pacientesDesignados || [];
     setForm({
-      pacienteId: session?.user?.pacienteId ? String(session.user.pacienteId) : '',
-      pacienteNome: session?.user?.pacienteNome || '',
+      pacienteId: designados.length === 1 ? String(designados[0].id) : '',
+      pacienteNome: designados.length === 1 ? designados[0].nome : '',
       turno: 'Diurno',
       pressaoArterial: '',
       temperatura: '',
@@ -190,21 +201,21 @@ export default function ColaboradorPortal() {
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
                 <label className={styles.label}>Paciente *</label>
-                {session?.user?.pacienteId ? (
-                  <input 
-                    type="text" 
-                    className={styles.input} 
-                    style={{ background: '#f9f9f9', color: '#555', fontWeight: 'bold', border: '1px solid #e2e8f0' }} 
-                    disabled 
-                    value={session.user.pacienteNome || ''} 
+                {pacientes.length === 1 ? (
+                  <input
+                    type="text"
+                    className={styles.input}
+                    style={{ background: '#f9f9f9', color: '#555', fontWeight: 'bold', border: '1px solid #e2e8f0' }}
+                    disabled
+                    value={pacientes[0].nome}
                   />
                 ) : loadingPacientes ? (
                   <select className={styles.select} disabled><option>Carregando pacientes...</option></select>
                 ) : (
-                  <select 
-                    className={styles.select} 
-                    required 
-                    value={form.pacienteId} 
+                  <select
+                    className={styles.select}
+                    required
+                    value={form.pacienteId}
                     onChange={handlePacienteChange}
                   >
                     <option value="">Selecione o paciente...</option>
