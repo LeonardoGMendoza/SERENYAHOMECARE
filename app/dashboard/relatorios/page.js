@@ -88,7 +88,7 @@ export default function RelatoriosPage() {
         </div>
 
         {/* Filters */}
-        {pacientesDisponiveis.length > 2 && (
+        {pacientesDisponiveis.length > 1 && (
           <div className={styles.filtros}>
             <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#666', alignSelf: 'center', marginRight: '8px' }}>Paciente:</span>
             {pacientesDisponiveis.map(paciente => (
