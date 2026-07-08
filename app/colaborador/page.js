@@ -14,7 +14,7 @@ export default function ColaboradorPortal() {
   const [form, setForm] = useState({
     pacienteId: '',
     pacienteNome: '',
-    turno: 'Diurno',
+    turno: 'Diurno A',
     pressaoArterial: '',
     temperatura: '',
     frequenciaCardiaca: '',
@@ -233,8 +233,10 @@ export default function ColaboradorPortal() {
                   value={form.turno} 
                   onChange={e => setForm({ ...form, turno: e.target.value })}
                 >
-                  <option value="Diurno">Diurno (12h)</option>
-                  <option value="Noturno">Noturno (12h)</option>
+                  <option value="Diurno A">Diurno A (12h) — 07h às 19h</option>
+                  <option value="Diurno B">Diurno B (12h) — 07h às 19h</option>
+                  <option value="Noturno A">Noturno A (12h) — 19h às 07h</option>
+                  <option value="Noturno B">Noturno B (12h) — 19h às 07h</option>
                   <option value="24 Horas">Plantão 24h</option>
                   <option value="Avulso">Cobertura / Avulso</option>
                 </select>
