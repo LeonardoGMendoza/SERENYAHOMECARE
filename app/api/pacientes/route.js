@@ -21,7 +21,7 @@ export async function POST(req) {
 
     // 2. Extrair dados do formulário
     const body = await req.json();
-    const { nome, telefone, endereco, diagnostico, alergias, grauDependencia, medicacoes, observacoesEnfermagem } = body;
+    const { nome, telefone, endereco, diagnostico, alergias, grauDependencia, medicacoes, observacoesEnfermagem, emailFamiliar } = body;
 
     if (!nome) {
       return NextResponse.json({ error: 'Nome é obrigatório.' }, { status: 400 });
@@ -38,6 +38,7 @@ export async function POST(req) {
         grauDependencia,
         medicacoes,
         observacoesEnfermagem,
+        emailFamiliar,
       },
     });
 

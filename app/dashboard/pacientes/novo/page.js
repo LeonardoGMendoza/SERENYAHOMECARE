@@ -58,9 +58,16 @@ export default function NovoPaciente() {
             </div>
           </div>
 
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Endereço Completo</label>
-            <input type="text" name="endereco" className={styles.input} placeholder="Rua, Número, Bairro, CEP" />
+          <div className={styles.formRow}>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Endereço Completo</label>
+              <input type="text" name="endereco" className={styles.input} placeholder="Rua, Número, Bairro, CEP" />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label}>E-mail do Familiar / Responsável</label>
+              <input type="email" name="emailFamiliar" className={styles.input} placeholder="email@exemplo.com" />
+            </div>
           </div>
 
           <div className={styles.formRow}>

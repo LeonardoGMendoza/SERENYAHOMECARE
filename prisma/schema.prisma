@@ -28,6 +28,7 @@ model Paciente {
   medicacoes   String?
   grauDependencia String?
   observacoesEnfermagem String?
+  emailFamiliar String?
   status       String   @default("Ativo")
   plano        String?
   users        User[]

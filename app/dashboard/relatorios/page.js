@@ -8,6 +8,7 @@ export default function RelatoriosPage() {
   const [loading, setLoading] = useState(true);
   const [filtroPaciente, setFiltroPaciente] = useState('Todos');
   const [selectedRelatorio, setSelectedRelatorio] = useState(null);
+  const [enviandoEmail, setEnviandoEmail] = useState(false);
 
   useEffect(() => {
     fetch('/api/relatorios')
@@ -25,6 +26,30 @@ export default function RelatoriosPage() {
     ? relatorios
     : relatorios.filter(r => r.pacienteNome === filtroPaciente);
 
+  const enviarRelatorioSemanal = async (pacienteNome) => {
+    if (!confirm(`Deseja enviar o relatório semanal dos últimos 7 dias para o familiar de ${pacienteNome}?`)) return;
+    
+    setEnviandoEmail(true);
+    try {
+      const res = await fetch('/api/relatorios/enviar-semanal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pacienteNome })
+      });
+      const data = await res.json();
+      
+      if (res.ok) {
+        alert('E-mail enviado com sucesso!');
+      } else {
+        alert(`Erro: ${data.error}`);
+      }
+    } catch (err) {
+      alert('Erro de conexão ao tentar enviar o e-mail.');
+    } finally {
+      setEnviandoEmail(false);
+    }
+  };
+
   // Helper check for abnormal vitals (just a highlight)
   const isVitalAbnormal = (pa, temp) => {
     if (temp) {
@@ -40,7 +65,7 @@ export default function RelatoriosPage() {
       }
     }
     return false;
-  };
+  }
 
   return (
     <DashLayout>
@@ -50,6 +75,16 @@ export default function RelatoriosPage() {
             <h1 className={styles.title}>Relatórios Diários de Saúde</h1>
             <p className={styles.subtitle}>{relatorios.length} plantões registrados pelas cuidadoras</p>
           </div>
+          {filtroPaciente !== 'Todos' && (
+            <button 
+              className={styles.btnPrimary} 
+              onClick={() => enviarRelatorioSemanal(filtroPaciente)}
+              disabled={enviandoEmail}
+              style={{ padding: '10px 20px', borderRadius: '10px', border: 'none', background: 'linear-gradient(135deg, #9333ea, #db2777)', color: 'white', fontWeight: 'bold', cursor: enviandoEmail ? 'not-allowed' : 'pointer', opacity: enviandoEmail ? 0.7 : 1 }}
+            >
+              {enviandoEmail ? '⏳ Enviando...' : '📧 Enviar Relatório Semanal'}
+            </button>
+          )}
         </div>
 
         {/* Filters */}
