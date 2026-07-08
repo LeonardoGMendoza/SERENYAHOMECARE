@@ -22,6 +22,8 @@ export default function DashLayout({ children }) {
     { href: '/dashboard/recrutamento', icon: '💼', label: 'Recrutamento' },
     { href: '/dashboard/relatorios', icon: '📝', label: 'Relatórios' },
     { href: '/dashboard/usuarios', icon: '👥', label: 'Equipe' },
+    { href: '/dashboard/financeiro', icon: '💰', label: 'Financeiro' },
+    { href: '/dashboard/lovable', icon: '🔗', label: 'Lovable' },
   ];
 
   useEffect(() => {

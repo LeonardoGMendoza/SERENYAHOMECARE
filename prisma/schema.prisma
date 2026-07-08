@@ -103,4 +103,13 @@ model RelatorioDiario {
   createdAt             DateTime @default(now())
 }
 
-
+model Financeiro {
+  id          Int      @id @default(autoincrement())
+  tipo        String   // "entrada" ou "saida"
+  categoria   String
+  descricao   String?
+  valor       Float
+  data        DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
