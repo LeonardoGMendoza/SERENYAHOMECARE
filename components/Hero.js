@@ -25,9 +25,6 @@ export default function Hero() {
               Assistência domiciliar humanizada, segura e de excelência para idosos, crianças e pacientes que merecem o melhor cuidado — no conforto do lar.
             </p>
             <div className={styles.heroActions}>
-              <Link href={waLink} target="_blank" className="btn btn-wa btn-lg">
-                💬 Falar no WhatsApp
-              </Link>
               <Link href="#planos" className="btn btn-outline-green btn-lg">
                 Ver Planos Premium
               </Link>

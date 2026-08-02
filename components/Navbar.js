@@ -24,10 +24,6 @@ export default function Navbar() {
           <li><Link href="#contato">Contato</Link></li>
         </ul>
 
-        <Link href={waLink} target="_blank" className={styles.contactBtn}>
-          💬 WhatsApp
-        </Link>
-
         <button className={styles.mobileBtn} onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
           {isOpen ? '✕' : '☰'}
         </button>
@@ -43,9 +39,6 @@ export default function Navbar() {
             <li><Link href="#redes" onClick={() => setIsOpen(false)}>Redes Sociais</Link></li>
             <li><Link href="#contato" onClick={() => setIsOpen(false)}>Contato</Link></li>
           </ul>
-          <Link href={waLink} target="_blank" className={styles.mobileWa} onClick={() => setIsOpen(false)}>
-            💬 Falar no WhatsApp
-          </Link>
         </div>
       )}
     </header>

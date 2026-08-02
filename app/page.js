@@ -172,9 +172,6 @@ export default function Home() {
                 Parceria oficial com especialistas em cuidados de feridas complexas, úlceras e curativos avançados. Quando seu paciente precisa de <strong>cuidados de feridas</strong> combinados com <strong>suporte domiciliar completo</strong>, as duas equipes trabalham juntas para garantir o melhor resultado.
               </p>
               <div className={styles.parceiraActions}>
-                <Link href={WA_LINK} target="_blank" className="btn btn-wa btn-sm">
-                  💬 WhatsApp Serenya
-                </Link>
                 <Link href="https://enfermeiraferidas.com.br/#parceiras" target="_blank" className="btn btn-outline btn-sm">
                   Ver Parceria Completa
                 </Link>
