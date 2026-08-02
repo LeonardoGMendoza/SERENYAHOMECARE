@@ -4,8 +4,7 @@ import Hero from '../components/Hero';
 import CopyEmailButton from '../components/CopyEmailButton';
 import RecruitmentForm from '../components/RecruitmentForm';
 import styles from './page.module.css';
-
-const WA_LINK = "https://wa.me/5511989553812?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
+const WA_LINK = "https://wa.me/5511974995342?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
 
 const services = [
   { icon: '👵', title: 'Cuidador de Idosos', desc: 'Assistência diária, controle de medicações, auxílio na mobilidade e higiene com amor e respeito.' },
@@ -151,7 +150,7 @@ export default function Home() {
                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
               </svg>
               <span>WhatsApp</span>
-              <span className={styles.socialHandle}>(11) 98955-3812</span>
+              <span className={styles.socialHandle}>(11) 97499-5342</span>
             </a>
           </div>
         </div>
@@ -173,7 +172,7 @@ export default function Home() {
                 Parceria oficial com especialistas em cuidados de feridas complexas, úlceras e curativos avançados. Quando seu paciente precisa de <strong>cuidados de feridas</strong> combinados com <strong>suporte domiciliar completo</strong>, as duas equipes trabalham juntas para garantir o melhor resultado.
               </p>
               <div className={styles.parceiraActions}>
-                <Link href={WA_LINK} target="_blank" className="btn btn-primary btn-sm">
+                <Link href={WA_LINK} target="_blank" className="btn btn-wa btn-sm">
                   💬 WhatsApp Serenya
                 </Link>
                 <Link href="https://enfermeiraferidas.com.br/#parceiras" target="_blank" className="btn btn-outline btn-sm">
@@ -196,7 +195,7 @@ export default function Home() {
               <div className={styles.contactIcon}>💬</div>
               <h3>WhatsApp</h3>
               <p>Resposta em até 1 hora</p>
-              <Link href={WA_LINK} target="_blank" className="btn btn-wa btn-sm">(11) 98955-3812</Link>
+              <Link href={WA_LINK} target="_blank" className="btn btn-wa btn-sm">(11) 97499-5342</Link>
             </div>
             <div className={styles.contactCard}>
               <div className={styles.contactIcon}>📍</div>
@@ -242,7 +241,7 @@ export default function Home() {
             </div>
             <div className={styles.footerCol}>
               <h4>Contato</h4>
-              <p>WhatsApp: (11) 98955-3812</p>
+              <p>WhatsApp: (11) 97499-5342</p>
               <p>Instagram: @cuidadosserenya</p>
             </div>
           </div>
@@ -254,7 +253,8 @@ export default function Home() {
 
       {/* Float WhatsApp */}
       <Link href={WA_LINK} target="_blank" className={styles.floatWa} aria-label="WhatsApp">
-        💬
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Como posso te ajudar?
       </Link>
     </main>
   );

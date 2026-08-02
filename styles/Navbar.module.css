@@ -20,10 +20,10 @@
 .menu a:hover { color: var(--pink); }
 
 .contactBtn {
-  background: var(--brand-gradient);
+  background: var(--wa-green);
   color: white;
   padding: 10px 22px; border-radius: 22px; font-weight: 600; font-size: 0.9rem;
-  box-shadow: 0 4px 12px var(--pink-glow);
+  box-shadow: 0 4px 12px rgba(37,211,102,0.3);
 }
 .contactBtn:hover { opacity: 0.9; }
 
