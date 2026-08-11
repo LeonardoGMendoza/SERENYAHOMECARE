@@ -39,10 +39,6 @@ export default function Navbar() {
           onClick={(e) => {
             e.preventDefault();
             setIsOpen(!isOpen);
-          }} 
-          onTouchEnd={(e) => {
-            e.preventDefault();
-            setIsOpen(!isOpen);
           }}
           aria-label="Menu"
         >
