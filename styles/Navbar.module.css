@@ -19,6 +19,20 @@
 .menu a { color: var(--text-secondary); font-size: 14px; font-weight: 500; }
 .menu a:hover { color: var(--pink); }
 
+.btnTalentos {
+  background: linear-gradient(135deg, #7048e8 0%, #5c3bc4 100%);
+  color: white !important;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(112, 72, 232, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btnTalentos:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(112, 72, 232, 0.4);
+}
 .contactBtn {
   background: var(--wa-green);
   color: white;
@@ -39,6 +53,17 @@
 .mobileDropdown ul { list-style: none; display: flex; flex-direction: column; gap: 18px; }
 .mobileDropdown a { color: var(--text-secondary); font-weight: 500; font-size: 15px; }
 .mobileDropdown a:hover { color: var(--text-primary); }
+
+.btnTalentosMobile {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, #7048e8 0%, #5c3bc4 100%);
+  color: white !important;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600 !important;
+  margin-top: 10px;
+}
 .mobileWa {
   margin-top: 16px;
   display: block; text-align: center;

@@ -22,6 +22,16 @@ export default function Navbar() {
           <li><Link href="#parceria">Parceria</Link></li>
           <li><Link href="#redes">Redes Sociais</Link></li>
           <li><Link href="#contato">Contato</Link></li>
+          <li>
+            <Link 
+              href="https://health-sync-hire.lovable.app/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={styles.btnTalentos}
+            >
+              Banco de Talentos
+            </Link>
+          </li>
         </ul>
 
         <button className={styles.mobileBtn} onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
@@ -38,6 +48,17 @@ export default function Navbar() {
             <li><Link href="#parceria" onClick={() => setIsOpen(false)}>Parceria</Link></li>
             <li><Link href="#redes" onClick={() => setIsOpen(false)}>Redes Sociais</Link></li>
             <li><Link href="#contato" onClick={() => setIsOpen(false)}>Contato</Link></li>
+            <li>
+              <Link 
+                href="https://health-sync-hire.lovable.app/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className={styles.btnTalentosMobile}
+              >
+                Banco de Talentos
+              </Link>
+            </li>
           </ul>
         </div>
       )}
