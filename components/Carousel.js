@@ -7,6 +7,7 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
   const [isPaused, setIsPaused] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false); // Trava o carrossel enquanto vídeo toca
   const [hasTrackedView, setHasTrackedView] = useState(false);
+  const [activeModalItem, setActiveModalItem] = useState(null); // Item ativo no Modal do Instagram
 
   useEffect(() => {
     // Detecta clique em iframes (YouTube/Instagram) para pausar o carrossel
@@ -39,7 +40,7 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
   };
 
   useEffect(() => {
-    if (!autoPlay || isPaused || isPlaying) return;
+    if (!autoPlay || isPaused || isPlaying || activeModalItem) return;
     
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
@@ -57,7 +58,7 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
     }, interval);
 
     return () => clearInterval(autoScroll);
-  }, [autoPlay, interval, isPaused, isPlaying]);
+  }, [autoPlay, interval, isPaused, isPlaying, activeModalItem]);
 
   const scrollLeftBtn = () => {
     if (scrollRef.current) {
@@ -94,7 +95,7 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
     const timeoutId = setTimeout(loadInstagramScript, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [items]);
+  }, [items, activeModalItem]);
 
   return (
     <div 
@@ -134,7 +135,13 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
                 }}
               />
             ) : item.type === 'instagram' ? (
-              <div style={{ width: '100%', height: '400px', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', background: 'white' }}>
+              <div style={{ position: 'relative', width: '100%', height: '400px', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', background: 'white' }}>
+                {/* Película invisível para abrir o modal */}
+                <div 
+                  className={styles.glassOverlay} 
+                  onClick={() => setActiveModalItem(item)}
+                  title="Clique para assistir"
+                />
                 <blockquote 
                   className="instagram-media" 
                   data-instgrm-permalink={`${item.src}?utm_source=ig_embed&amp;utm_campaign=loading`} 
@@ -169,6 +176,32 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
       <button className={`${styles.navBtn} ${styles.rightBtn}`} onClick={scrollRightBtn} aria-label="Próximo">
         ›
       </button>
+
+      {/* MODAL DO INSTAGRAM */}
+      {activeModalItem && (
+        <div className={styles.modalBackdrop}>
+          <button 
+            className={styles.modalCloseBtn} 
+            onClick={() => {
+              setActiveModalItem(null);
+              setIsPaused(false); // Libera o carrossel ao fechar
+              setIsPlaying(false);
+            }}
+            aria-label="Fechar vídeo"
+          >
+            ×
+          </button>
+          <div className={styles.modalContent}>
+            <blockquote 
+              className="instagram-media" 
+              data-instgrm-permalink={`${activeModalItem.src}?utm_source=ig_embed&amp;utm_campaign=loading`} 
+              data-instgrm-version="14" 
+              style={{ background: '#FFF', border: '0', borderRadius: '3px', boxShadow: 'none', margin: '0', maxWidth: '400px', minWidth: '300px', padding: '0', width: '100%' }}
+            >
+            </blockquote>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
