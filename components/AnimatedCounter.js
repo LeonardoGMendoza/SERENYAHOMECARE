@@ -34,20 +34,10 @@ export default function AnimatedCounter({ end, duration = 2000, suffix = '' }) {
       }
     };
 
-    // Usar IntersectionObserver para só começar a contar quando aparecer na tela
-    if (elementRef.current) {
-      observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          animationFrame = requestAnimationFrame(animate);
-          observer.disconnect(); // Só anima uma vez
-        }
-      }, { threshold: 0.1 });
-      
-      observer.observe(elementRef.current);
-    }
+    // Inicia a animação imediatamente (compatível com todos os celulares)
+    animationFrame = requestAnimationFrame(animate);
 
     return () => {
-      if (observer) observer.disconnect();
       if (animationFrame) cancelAnimationFrame(animationFrame);
     };
   }, [end, duration]);

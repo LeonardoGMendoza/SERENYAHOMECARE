@@ -30,9 +30,9 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
         const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
         // Se chegou no fim, volta pro começo
         if (scrollLeft + clientWidth >= scrollWidth - 10) {
-          scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+          scrollContainer.scrollLeft = 0;
         } else {
-          scrollContainer.scrollBy({ left: 320, behavior: 'smooth' });
+          scrollContainer.scrollLeft += 320;
         }
       }
     }, interval);
@@ -40,15 +40,15 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
     return () => clearInterval(autoScroll);
   }, [autoPlay, interval, isPaused]);
 
-  const scrollLeft = () => {
+  const scrollLeftBtn = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+      scrollRef.current.scrollLeft -= 320;
     }
   };
 
-  const scrollRight = () => {
+  const scrollRightBtn = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+      scrollRef.current.scrollLeft += 320;
     }
   };
 
@@ -60,7 +60,7 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
       onTouchStart={handleInteraction}
       onTouchEnd={() => setIsPaused(false)}
     >
-      <button className={`${styles.navBtn} ${styles.leftBtn}`} onClick={scrollLeft} aria-label="Anterior">
+      <button className={`${styles.navBtn} ${styles.leftBtn}`} onClick={scrollLeftBtn} aria-label="Anterior">
         ‹
       </button>
       
@@ -111,7 +111,7 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
         ))}
       </div>
 
-      <button className={`${styles.navBtn} ${styles.rightBtn}`} onClick={scrollRight} aria-label="Próximo">
+      <button className={`${styles.navBtn} ${styles.rightBtn}`} onClick={scrollRightBtn} aria-label="Próximo">
         ›
       </button>
     </div>
