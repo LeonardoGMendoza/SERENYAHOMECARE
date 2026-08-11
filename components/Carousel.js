@@ -124,8 +124,14 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
                 className={styles.mediaElement}
                 poster={item.poster}
                 onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-                onEnded={() => setIsPlaying(false)}
+                onPause={() => {
+                  setIsPlaying(false);
+                  setIsPaused(false);
+                }}
+                onEnded={() => {
+                  setIsPlaying(false);
+                  setIsPaused(false);
+                }}
               />
             ) : item.type === 'instagram' ? (
               <div style={{ width: '100%', height: '400px', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', background: 'white' }}>
