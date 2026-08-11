@@ -41,14 +41,18 @@
 }
 .contactBtn:hover { opacity: 0.9; }
 
-.mobileBtn { 
+.mobileBtnFix { 
   display: none; 
-  font-size: 1.6rem; 
+  font-size: 1.8rem; 
   color: var(--text-primary); 
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  padding: 12px;
+  touch-action: manipulation;
+  position: relative;
+  z-index: 200;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobileDropdown {
@@ -82,5 +86,5 @@
 @media (max-width: 768px) {
   .menu { display: none; }
   .contactBtn { display: none; }
-  .mobileBtn { display: block; }
+  .mobileBtnFix { display: block; }
 }

@@ -34,7 +34,7 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <button className={styles.mobileBtn} onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
+        <button className={styles.mobileBtnFix} onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
           {isOpen ? '✕' : '☰'}
         </button>
       </div>
