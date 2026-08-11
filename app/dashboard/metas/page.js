@@ -5,16 +5,20 @@ import styles from './metas.module.css';
 
 export default function MetasPage() {
   const [metas, setMetas] = useState([]);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [formData, setFormData] = useState({
+  
+  const initialFormState = {
     nome: '',
     valor: '',
-    tipo: 'Financeira',
+    tipo: 'Venda',
     vigencia: '',
-    unidade: 'São Paulo',
-    responsavel: ''
-  });
+    unidade: 'Sede - Itaquera',
+    responsavel: 'Rosecler',
+    ativo: true
+  };
+  
+  const [formData, setFormData] = useState(initialFormState);
 
   useEffect(() => {
     fetchMetas();
@@ -35,7 +39,11 @@ export default function MetasPage() {
   };
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setFormData({ 
+      ...formData, 
+      [name]: type === 'checkbox' ? checked : value 
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -47,10 +55,8 @@ export default function MetasPage() {
         body: JSON.stringify(formData)
       });
       if (res.ok) {
-        setIsDrawerOpen(false);
-        setFormData({
-          nome: '', valor: '', tipo: 'Financeira', vigencia: '', unidade: 'São Paulo', responsavel: ''
-        });
+        setIsModalOpen(false);
+        setFormData(initialFormState);
         fetchMetas();
       } else {
         alert('Erro ao salvar meta');
@@ -66,10 +72,10 @@ export default function MetasPage() {
       <div className={styles.container}>
         <div className={styles.header}>
           <div>
-            <h1 className={styles.title}>Painel de Metas</h1>
-            <p className={styles.subtitle}>Acompanhe os objetivos e resultados da Serenya</p>
+            <h1 className={styles.title}>Metas</h1>
+            <p className={styles.subtitle}>Gestão de Indicadores e Objetivos da Serenya</p>
           </div>
-          <button className={styles.btnPrimary} onClick={() => setIsDrawerOpen(true)}>
+          <button className={styles.btnPrimary} onClick={() => setIsModalOpen(true)}>
             + Nova Meta
           </button>
         </div>
@@ -87,7 +93,7 @@ export default function MetasPage() {
                     <th>Status</th>
                     <th>Tipo</th>
                     <th>Nome da Meta</th>
-                    <th>Valor / Alvo</th>
+                    <th>Valor</th>
                     <th>Unidade</th>
                     <th>Responsável</th>
                     <th>Vigência</th>
@@ -98,14 +104,14 @@ export default function MetasPage() {
                     <tr key={meta.id}>
                       <td>
                         <span className={`${styles.badge} ${meta.ativo ? styles.badgeActive : styles.badgeInactive}`}>
-                          {meta.ativo ? 'Em Andamento' : 'Concluída'}
+                          {meta.ativo ? 'Ativo' : 'Inativo'}
                         </span>
                       </td>
                       <td>
                         <span className={styles.tipoBadge}>{meta.tipo}</span>
                       </td>
                       <td className={styles.tdBold}>{meta.nome}</td>
-                      <td>{meta.valor}</td>
+                      <td className={styles.tdValor}>{meta.valor}</td>
                       <td>{meta.unidade || '-'}</td>
                       <td>{meta.responsavel || '-'}</td>
                       <td>{meta.vigencia || '-'}</td>
@@ -118,54 +124,100 @@ export default function MetasPage() {
         </div>
       </div>
 
-      {/* Drawer Overlay */}
-      {isDrawerOpen && (
-        <div className={styles.drawerOverlay} onClick={() => setIsDrawerOpen(false)}></div>
-      )}
+      {/* Modal Overlay */}
+      {isModalOpen && (
+        <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
+          {/* Modal Content */}
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <div>
+                <span className={styles.modalBreadcrumb}>Administração {'>'} </span>
+                <h2>Metas</h2>
+              </div>
+              <button className={styles.closeBtn} onClick={() => setIsModalOpen(false)}>×</button>
+            </div>
+            
+            <form className={styles.modalForm} onSubmit={handleSubmit}>
+              <h3 className={styles.sectionTitle}>Informações da Meta</h3>
+              
+              <div className={styles.formRow}>
+                <div className={styles.formGroup} style={{ flex: 3 }}>
+                  <label>Unidade *</label>
+                  <select name="unidade" value={formData.unidade} onChange={handleInputChange} required>
+                    <option value="Sede - Itaquera">Sede - Itaquera</option>
+                    <option value="Zona Oeste">Zona Oeste</option>
+                    <option value="Zona Sul">Zona Sul</option>
+                    <option value="Home Care Brasil">Home Care Brasil</option>
+                  </select>
+                </div>
+                
+                <div className={styles.formGroup} style={{ flex: 1, alignItems: 'flex-end' }}>
+                  <label>Ativo *</label>
+                  <label className={styles.switch}>
+                    <input type="checkbox" name="ativo" checked={formData.ativo} onChange={handleInputChange} />
+                    <span className={styles.slider}></span>
+                  </label>
+                </div>
+              </div>
 
-      {/* Drawer */}
-      <div className={`${styles.drawer} ${isDrawerOpen ? styles.drawerOpen : ''}`}>
-        <div className={styles.drawerHeader}>
-          <h2>Cadastrar Nova Meta</h2>
-          <button className={styles.closeBtn} onClick={() => setIsDrawerOpen(false)}>×</button>
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label>Nome *</label>
+                  <input type="text" name="nome" value={formData.nome} onChange={handleInputChange} required />
+                </div>
+                
+                <div className={styles.formGroup}>
+                  <label>Responsável *</label>
+                  <select name="responsavel" value={formData.responsavel} onChange={handleInputChange} required>
+                    <option value="Rosecler">Rosecler (Diretoria)</option>
+                    <option value="Recursos Humanos">Recursos Humanos</option>
+                    <option value="Financeiro">Financeiro</option>
+                    <option value="Comercial">Comercial</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label>Tipo *</label>
+                  <select name="tipo" value={formData.tipo} onChange={handleInputChange} required>
+                    <option value="Venda">Venda</option>
+                    <option value="Receita">Receita</option>
+                    <option value="Despesa">Despesa</option>
+                    <option value="Inadimplência">Inadimplência</option>
+                    <option value="Recrutamento">Recrutamento</option>
+                    <option value="Operacional">Operacional</option>
+                  </select>
+                </div>
+                
+                <div className={styles.formGroup}>
+                  <label>Valor *</label>
+                  <div className={styles.inputWithPrefix}>
+                    <span className={styles.prefix}>R$</span>
+                    <input type="text" name="valor" value={formData.valor} onChange={handleInputChange} required placeholder="Ex: 5.000,00" />
+                  </div>
+                </div>
+              </div>
+              
+              <div className={styles.formRow}>
+                 <div className={styles.formGroup}>
+                  <label>Vigência</label>
+                  <input type="text" name="vigencia" value={formData.vigencia} onChange={handleInputChange} placeholder="Ex: Mar 2024 - Jun 2024" />
+                </div>
+              </div>
+
+              <div className={styles.modalFooter}>
+                <button type="submit" className={styles.btnPrimary}>
+                  <span className={styles.saveIcon}>💾</span> Salvar
+                </button>
+                <button type="button" className={styles.btnGhost} onClick={() => setIsModalOpen(false)}>
+                  ✕ Fechar
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-        <form className={styles.drawerForm} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label>Nome da Meta *</label>
-            <input type="text" name="nome" value={formData.nome} onChange={handleInputChange} required placeholder="Ex: Captação de Currículos" />
-          </div>
-          <div className={styles.formGroup}>
-            <label>Tipo *</label>
-            <select name="tipo" value={formData.tipo} onChange={handleInputChange} required>
-              <option value="Recrutamento">Recrutamento</option>
-              <option value="Financeira">Financeira</option>
-              <option value="Operacional">Operacional</option>
-              <option value="Marketing">Marketing</option>
-            </select>
-          </div>
-          <div className={styles.formGroup}>
-            <label>Valor / Alvo *</label>
-            <input type="text" name="valor" value={formData.valor} onChange={handleInputChange} required placeholder="Ex: 50 Currículos" />
-          </div>
-          <div className={styles.formGroup}>
-            <label>Vigência (Prazo)</label>
-            <input type="text" name="vigencia" value={formData.vigencia} onChange={handleInputChange} placeholder="Ex: Até sexta-feira" />
-          </div>
-          <div className={styles.formGroup}>
-            <label>Responsável</label>
-            <input type="text" name="responsavel" value={formData.responsavel} onChange={handleInputChange} placeholder="Ex: Rosecler" />
-          </div>
-          <div className={styles.formGroup}>
-            <label>Unidade / Região</label>
-            <input type="text" name="unidade" value={formData.unidade} onChange={handleInputChange} placeholder="Ex: São Paulo - Zona Oeste" />
-          </div>
-
-          <div className={styles.drawerFooter}>
-            <button type="button" className={styles.btnSecondary} onClick={() => setIsDrawerOpen(false)}>Cancelar</button>
-            <button type="submit" className={styles.btnPrimary}>Salvar Meta</button>
-          </div>
-        </form>
-      </div>
+      )}
     </DashLayout>
   );
 }
