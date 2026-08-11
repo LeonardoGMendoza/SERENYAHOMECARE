@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import CopyEmailButton from '../components/CopyEmailButton';
 import RecruitmentForm from '../components/RecruitmentForm';
+import Carousel from '../components/Carousel';
 import styles from './page.module.css';
 const WA_LINK = "https://wa.me/5511974995342?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
 
@@ -22,11 +23,20 @@ const plans = [
   { name: 'Plano Excellence', features: ['Atendimento 24h completo', 'Supervisão de Enfermagem', 'Fisioterapia inclusa', 'Gestão completa do cuidado', 'Relatórios diários detalhados', 'Suporte 24h para família'], price: 'Valores sob consulta' },
 ];
 
-// Fotos da galeria — adicione os arquivos em /public com esses nomes
+// Fotos da galeria
 const galleryImages = [
   { src: '/nursing_team.png', alt: 'Equipe Serenya' },
   { src: '/elderly_care.png', alt: 'Cuidado com idosos' },
   { src: '/serenya.png',      alt: 'Serenya Home Care' },
+];
+
+// Feed do Instagram
+const instagramFeed = [
+  { type: 'instagram', src: 'https://www.instagram.com/p/DbXwzaUFgHN' },
+  { type: 'instagram', src: 'https://www.instagram.com/p/DayqxSZpeNZ' },
+  { type: 'instagram', src: 'https://www.instagram.com/p/DaWmuuKy0Bn' },
+  { type: 'instagram', src: 'https://www.instagram.com/p/DZ_bLm9DULn' },
+  { type: 'instagram', src: 'https://www.instagram.com/p/DZv_U7QjbGh' },
 ];
 
 export default function Home() {
@@ -53,14 +63,45 @@ export default function Home() {
         <div className="container">
           <div className="section-label">Nossa Equipe</div>
           <h2 className="section-title">Imagens que falam por si</h2>
-          <div className={styles.galleryGrid}>
+          <div className={styles.galleryGrid} style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))' }}>
             {galleryImages.map((img, i) => (
               <div key={i} className={styles.galleryItem}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`${img.src}?v=2`} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── VÍDEO EM DESTAQUE ── */}
+      <section id="video-destaque" className="section" style={{ background: '#0a1a0c', color: 'white' }}>
+        <div className="container text-center">
+          <div className="section-label" style={{ color: '#25D366' }}>Conheça a Serenya</div>
+          <h2 className="section-title" style={{ color: 'white' }}>Cuidado que transforma vidas</h2>
+          <p className="section-sub" style={{ color: '#ccc', maxWidth: '700px', margin: '0 auto 40px' }}>
+            Veja um pouco mais sobre como nossa equipe atua no dia a dia, levando conforto, segurança e humanização para dentro do lar de cada paciente.
+          </p>
+          <div style={{ maxWidth: '800px', margin: '0 auto', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.5)' }}>
+            <iframe
+              src="https://www.instagram.com/p/DbkAD30ytpc/embed"
+              width="100%"
+              height="600"
+              frameBorder="0"
+              scrolling="no"
+              allowtransparency="true"
+              style={{ background: 'white' }}
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEED DO INSTAGRAM ── */}
+      <section id="instagram-feed" className={`section section-alt`}>
+        <div className="container text-center">
+          <div className="section-label">@cuidadosserenya</div>
+          <h2 className="section-title">Nosso Dia a Dia</h2>
+          <p className="section-sub" style={{ marginBottom: '40px' }}>Acompanhe nossa rotina de cuidados e treinamentos diretamente pelo nosso Instagram.</p>
+          <Carousel items={instagramFeed} />
         </div>
       </section>
 
