@@ -1,12 +1,13 @@
 'use client';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import styles from '../styles/Carousel.module.css';
 
 export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
   const scrollRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (!autoPlay) return;
+    if (!autoPlay || isPaused) return;
     
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
@@ -24,7 +25,7 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
     }, interval);
 
     return () => clearInterval(autoScroll);
-  }, [autoPlay, interval]);
+  }, [autoPlay, interval, isPaused]);
 
   const scrollLeft = () => {
     if (scrollRef.current) {
@@ -39,7 +40,13 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
   };
 
   return (
-    <div className={styles.carouselContainer}>
+    <div 
+      className={styles.carouselContainer}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+    >
       <button className={`${styles.navBtn} ${styles.leftBtn}`} onClick={scrollLeft} aria-label="Anterior">
         ‹
       </button>

@@ -34,9 +34,16 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <button className={styles.mobileBtnFix} onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
+        <div 
+          role="button" 
+          tabIndex={0} 
+          className={styles.mobileBtnFix} 
+          onClick={() => setIsOpen(!isOpen)} 
+          onKeyDown={(e) => { if(e.key === 'Enter') setIsOpen(!isOpen) }}
+          aria-label="Menu"
+        >
           {isOpen ? '✕' : '☰'}
-        </button>
+        </div>
       </div>
 
       {isOpen && (

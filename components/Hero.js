@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from '../styles/Hero.module.css';
+import AnimatedCounter from './AnimatedCounter';
 
 export default function Hero() {
   const waLink = "https://wa.me/5511974995342?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
@@ -31,17 +32,23 @@ export default function Hero() {
             </div>
             <div className={styles.heroStats}>
               <div className={styles.heroStat}>
-                <span className={styles.heroStatNum}>1.000+</span>
+                <span className={styles.heroStatNum}>
+                  <AnimatedCounter end={1000} suffix="+" />
+                </span>
                 <span className={styles.heroStatLabel}>Famílias Atendidas</span>
               </div>
               <div className={styles.heroStatDivider} />
               <div className={styles.heroStat}>
-                <span className={styles.heroStatNum}>24h</span>
+                <span className={styles.heroStatNum}>
+                  <AnimatedCounter end={24} suffix="h" />
+                </span>
                 <span className={styles.heroStatLabel}>Disponibilidade</span>
               </div>
               <div className={styles.heroStatDivider} />
               <div className={styles.heroStat}>
-                <span className={styles.heroStatNum}>5★</span>
+                <span className={styles.heroStatNum}>
+                  <AnimatedCounter end={5} suffix="★" />
+                </span>
                 <span className={styles.heroStatLabel}>Avaliação Média</span>
               </div>
             </div>
