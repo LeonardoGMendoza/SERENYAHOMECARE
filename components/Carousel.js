@@ -1,19 +1,40 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import styles from '../styles/Carousel.module.css';
 
-export default function Carousel({ items }) {
+export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
   const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (!autoPlay) return;
+    
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const autoScroll = setInterval(() => {
+      if (scrollContainer) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+        // Se chegou no fim, volta pro começo
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollContainer.scrollBy({ left: 320, behavior: 'smooth' });
+        }
+      }
+    }, interval);
+
+    return () => clearInterval(autoScroll);
+  }, [autoPlay, interval]);
 
   const scrollLeft = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+      scrollRef.current.scrollBy({ left: -320, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+      scrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
     }
   };
 
@@ -40,7 +61,7 @@ export default function Carousel({ items }) {
               <iframe
                 src={`${item.src}/embed`}
                 width="100%"
-                height="480"
+                height="400"
                 frameBorder="0"
                 scrolling="no"
                 allowtransparency="true"
