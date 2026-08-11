@@ -24,6 +24,7 @@ export default function DashLayout({ children }) {
     { href: '/dashboard/usuarios', icon: '👥', label: 'Equipe' },
     { href: '/dashboard/financeiro', icon: '💰', label: 'Financeiro' },
     { href: '/dashboard/lovable', icon: '🔗', label: 'Lovable' },
+    { href: '/dashboard/metas', icon: '🎯', label: 'Metas' },
   ];
 
   useEffect(() => {
