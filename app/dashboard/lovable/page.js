@@ -13,14 +13,13 @@ export default function LovablePage() {
           </div>
         </div>
 
-        <div className={styles.waitCard}>
-          <div className={styles.waitIcon}>🚀</div>
-          <h2 className={styles.waitTitle}>Em breve disponível!</h2>
-          <p className={styles.waitText}>
-            Aguardando o link da ferramenta do seu parceiro para ativar a integração.
-            Assim que o link for fornecido, o sistema aparecerá aqui diretamente, sem precisar sair do painel.
-          </p>
-          <div className={styles.waitBadge}>🔒 Integração segura via iframe</div>
+        <div className={styles.iframeContainer}>
+          <iframe 
+            src="https://health-sync-hire.lovable.app/" 
+            title="Health Sync Hire Lovable"
+            className={styles.iframe}
+            allowFullScreen
+          />
         </div>
       </div>
     </DashLayout>
