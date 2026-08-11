@@ -113,3 +113,16 @@ model Financeiro {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+model Meta {
+  id          Int      @id @default(autoincrement())
+  unidade     String
+  ativo       Boolean  @default(true)
+  nome        String
+  responsavel String
+  tipo        String
+  valor       String
+  vigencia    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
