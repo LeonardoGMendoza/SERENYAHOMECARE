@@ -5,7 +5,26 @@ import styles from '../styles/Carousel.module.css';
 export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
   const scrollRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false); // Trava o carrossel enquanto vídeo toca
   const [hasTrackedView, setHasTrackedView] = useState(false);
+
+  useEffect(() => {
+    // Detecta clique em iframes (YouTube/Instagram) para pausar o carrossel
+    const handleBlur = () => {
+      if (document.activeElement && document.activeElement.tagName === 'IFRAME') {
+        setIsPlaying(true);
+      }
+    };
+    // Libera o carrossel quando clica fora do iframe
+    const handleFocus = () => setIsPlaying(false);
+    
+    window.addEventListener('blur', handleBlur);
+    window.addEventListener('focus', handleFocus);
+    return () => {
+      window.removeEventListener('blur', handleBlur);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, []);
 
   const handleInteraction = () => {
     setIsPaused(true);
@@ -20,7 +39,7 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
   };
 
   useEffect(() => {
-    if (!autoPlay || isPaused) return;
+    if (!autoPlay || isPaused || isPlaying) return;
     
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
@@ -38,7 +57,7 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
     }, interval);
 
     return () => clearInterval(autoScroll);
-  }, [autoPlay, interval, isPaused]);
+  }, [autoPlay, interval, isPaused, isPlaying]);
 
   const scrollLeftBtn = () => {
     if (scrollRef.current) {
@@ -83,6 +102,10 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
       onMouseEnter={handleInteraction}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleInteraction}
+      onTouchEnd={() => {
+        // No celular, volta a rodar após soltar o dedo (com leve atraso para não atrapalhar o clique no vídeo)
+        setTimeout(() => setIsPaused(false), 2500);
+      }}
     >
       <button className={`${styles.navBtn} ${styles.leftBtn}`} onClick={scrollLeftBtn} aria-label="Anterior">
         ‹
@@ -100,6 +123,9 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
                 loop={item.loop}
                 className={styles.mediaElement}
                 poster={item.poster}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                onEnded={() => setIsPlaying(false)}
               />
             ) : item.type === 'instagram' ? (
               <div style={{ width: '100%', height: '400px', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', background: 'white' }}>
