@@ -20,18 +20,18 @@
 .menu a:hover { color: var(--pink); }
 
 .btnTalentos {
-  background: linear-gradient(135deg, #7048e8 0%, #5c3bc4 100%);
+  background: linear-gradient(135deg, #248f76 0%, #1a6f5b 100%);
   color: white !important;
   padding: 8px 18px;
   border-radius: 20px;
   font-weight: 600 !important;
-  box-shadow: 0 4px 12px rgba(112, 72, 232, 0.3);
+  box-shadow: 0 4px 12px rgba(36, 143, 118, 0.3);
   transition: all 0.3s ease;
 }
 
 .btnTalentos:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(112, 72, 232, 0.4);
+  box-shadow: 0 6px 16px rgba(36, 143, 118, 0.4);
 }
 .contactBtn {
   background: var(--wa-green);
@@ -57,7 +57,7 @@
 .btnTalentosMobile {
   display: block;
   text-align: center;
-  background: linear-gradient(135deg, #7048e8 0%, #5c3bc4 100%);
+  background: linear-gradient(135deg, #248f76 0%, #1a6f5b 100%);
   color: white !important;
   padding: 12px;
   border-radius: 12px;
