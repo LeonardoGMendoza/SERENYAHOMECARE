@@ -22,19 +22,39 @@
   margin: 0;
 }
 
-.iframeContainer {
-  width: 100%;
-  height: calc(100vh - 160px); /* Ocupa quase toda a altura disponível da tela */
-  background: #ffffff;
+.waitCard {
+  background: linear-gradient(135deg, #f8f0ff 0%, #fff0f8 100%);
+  border: 2px dashed #D94F8A44;
   border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  border: 1px solid #eaeaea;
+  padding: 80px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
-.iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
+.waitIcon {
+  font-size: 4rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.waitTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.waitText {
+  font-size: 1rem;
+  color: #666;
+  max-width: 500px;
+  line-height: 1.6;
+  margin: 0;
 }

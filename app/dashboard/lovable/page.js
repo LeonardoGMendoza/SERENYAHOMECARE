@@ -13,13 +13,13 @@ export default function LovablePage() {
           </div>
         </div>
 
-        <div className={styles.iframeContainer}>
-          <iframe 
-            src="https://health-sync-hire.lovable.app/" 
-            title="Health Sync Hire Lovable"
-            className={styles.iframe}
-            allowFullScreen
-          />
+        <div className={styles.waitCard}>
+          <div className={styles.waitIcon}>🚀</div>
+          <h2 className={styles.waitTitle}>Painel de Recrutamento</h2>
+          <p className={styles.waitText}>
+            A ferramenta Lovable do seu sócio é o formulário público. 
+            Os resultados dos candidatos aparecerão aqui assim que a integração do banco de dados for concluída.
+          </p>
         </div>
       </div>
     </DashLayout>
