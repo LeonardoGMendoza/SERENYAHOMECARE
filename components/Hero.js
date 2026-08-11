@@ -51,6 +51,20 @@ export default function Hero() {
                 </span>
                 <span className={styles.heroStatLabel}>Avaliação Média</span>
               </div>
+              <div className={styles.heroStatDivider} />
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatNum}>
+                  <AnimatedCounter end={15840} suffix="+" />
+                </span>
+                <span className={styles.heroStatLabel}>Vídeos Assistidos</span>
+              </div>
+              <div className={styles.heroStatDivider} />
+              <div className={styles.heroStat}>
+                <span className={styles.heroStatNum}>
+                  <AnimatedCounter end={42950} suffix="+" />
+                </span>
+                <span className={styles.heroStatLabel}>Acessos ao Site</span>
+              </div>
             </div>
           </div>
 

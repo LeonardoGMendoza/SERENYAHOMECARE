@@ -34,16 +34,20 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <div 
-          role="button" 
-          tabIndex={0} 
+        <button 
           className={styles.mobileBtnFix} 
-          onClick={() => setIsOpen(!isOpen)} 
-          onKeyDown={(e) => { if(e.key === 'Enter') setIsOpen(!isOpen) }}
+          onClick={(e) => {
+            e.preventDefault();
+            setIsOpen(!isOpen);
+          }} 
+          onTouchEnd={(e) => {
+            e.preventDefault();
+            setIsOpen(!isOpen);
+          }}
           aria-label="Menu"
         >
-          {isOpen ? '✕' : '☰'}
-        </div>
+          <span style={{ pointerEvents: 'none' }}>{isOpen ? '✕' : '☰'}</span>
+        </button>
       </div>
 
       {isOpen && (
