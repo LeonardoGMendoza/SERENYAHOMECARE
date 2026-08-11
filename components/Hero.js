@@ -1,8 +1,28 @@
+'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '../styles/Hero.module.css';
 import AnimatedCounter from './AnimatedCounter';
 
 export default function Hero() {
+  const [stats, setStats] = useState({ visits: 42950, videoViews: 15840 });
+
+  useEffect(() => {
+    // Registra a visita e busca os dados mais atualizados do servidor
+    fetch('/api/stats', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'visit' })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.visits) {
+          setStats(data);
+        }
+      })
+      .catch(err => console.error('Erro ao buscar stats', err));
+  }, []);
+
   const waLink = "https://wa.me/5511974995342?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
 
   return (
@@ -54,14 +74,14 @@ export default function Hero() {
               <div className={styles.heroStatDivider} />
               <div className={styles.heroStat}>
                 <span className={styles.heroStatNum}>
-                  <AnimatedCounter end={15840} suffix="+" />
+                  <AnimatedCounter end={stats.videoViews} suffix="+" />
                 </span>
                 <span className={styles.heroStatLabel}>Vídeos Assistidos</span>
               </div>
               <div className={styles.heroStatDivider} />
               <div className={styles.heroStat}>
                 <span className={styles.heroStatNum}>
-                  <AnimatedCounter end={42950} suffix="+" />
+                  <AnimatedCounter end={stats.visits} suffix="+" />
                 </span>
                 <span className={styles.heroStatLabel}>Acessos ao Site</span>
               </div>

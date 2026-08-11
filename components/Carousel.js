@@ -5,6 +5,19 @@ import styles from '../styles/Carousel.module.css';
 export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
   const scrollRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [hasTrackedView, setHasTrackedView] = useState(false);
+
+  const handleInteraction = () => {
+    setIsPaused(true);
+    if (!hasTrackedView) {
+      setHasTrackedView(true);
+      fetch('/api/stats', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'videoView' })
+      }).catch(err => console.error('Falha ao registrar view de video', err));
+    }
+  };
 
   useEffect(() => {
     if (!autoPlay || isPaused) return;
@@ -42,9 +55,9 @@ export default function Carousel({ items, autoPlay = true, interval = 3000 }) {
   return (
     <div 
       className={styles.carouselContainer}
-      onMouseEnter={() => setIsPaused(true)}
+      onMouseEnter={handleInteraction}
       onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
+      onTouchStart={handleInteraction}
       onTouchEnd={() => setIsPaused(false)}
     >
       <button className={`${styles.navBtn} ${styles.leftBtn}`} onClick={scrollLeft} aria-label="Anterior">
