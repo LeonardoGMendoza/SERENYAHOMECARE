@@ -17,11 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" className={`${inter.variable}`}>
-      <body>
-        {children}
-        <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-        <script dangerouslySetInnerHTML={{ __html: 'eruda.init();' }}></script>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
