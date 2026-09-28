@@ -105,6 +105,43 @@
   color: var(--text-primary); font-size: 1.1rem; font-weight: 700;
 }
 
+/* === DEPOIMENTOS === */
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 50px;
+}
+.testimonialCard {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(74,140,82,0.1);
+  border-radius: var(--radius);
+  padding: 36px 30px;
+  display: flex; flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: var(--transition);
+  text-align: left;
+}
+.testimonialCard:hover { border-color: var(--green); box-shadow: var(--shadow-green); transform: translateY(-5px); }
+.testimonialStars { color: #f59e0b; font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 2px; }
+.testimonialText { color: var(--text-secondary); font-style: italic; margin-bottom: 25px; line-height: 1.6; flex-grow: 1; }
+.testimonialAuthor {
+  display: flex; align-items: center; gap: 15px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.testimonialAvatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--pink-glow);
+  color: var(--pink-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; font-size: 1.1rem;
+}
+.testimonialName { font-weight: 700; color: var(--text-primary); font-size: 0.95rem; }
+.testimonialBairro { color: var(--text-muted); font-size: 0.8rem; display: flex; align-items: center; gap: 4px; }
+
 /* === PARCERIA === */
 .parceiraCard {
   display: grid;
