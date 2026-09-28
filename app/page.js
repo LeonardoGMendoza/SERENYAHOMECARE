@@ -159,7 +159,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="redes" className={section section-alt }>
+      <section id="redes" className={`section section-alt ${styles.socialSection}`}>
         <div className="container">
           <div className="section-label">Redes Sociais</div>
           <h2 className="section-title">Acompanhe Nosso Trabalho</h2>
