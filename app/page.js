@@ -5,36 +5,36 @@ import CopyEmailButton from '../components/CopyEmailButton';
 import RecruitmentForm from '../components/RecruitmentForm';
 import Carousel from '../components/Carousel';
 import styles from './page.module.css';
-const WA_LINK = "https://wa.me/5511974995342?text=OlÃ¡!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
+const WA_LINK = "https://wa.me/5511974995342?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cuidados%20da%20Serenya.";
 
 const services = [
-  { icon: 'ðŸ‘µ', title: 'Cuidador de Idosos', desc: 'AssistÃªncia diÃ¡ria, controle de medicaÃ§Ãµes, auxÃ­lio na mobilidade e higiene com amor e respeito.' },
-  { icon: 'ðŸ©º', title: 'TÃ©cnico de Enfermagem', desc: 'Procedimentos complexos, sondas, curativos avanÃ§ados â€” plantÃµes de 12h ou 24h.' },
-  { icon: 'â¤ï¸', title: 'Cuidados Paliativos', desc: 'Conforto e qualidade de vida para pacientes graves, com apoio emocional Ã  famÃ­lia.' },
-  { icon: 'ðŸ¥', title: 'Acompanhamento Hospitalar', desc: 'NÃ£o deixe quem vocÃª ama sozinho. Cuidadores e tÃ©cnicos acompanham durante internaÃ§Ãµes.' },
-  { icon: 'ðŸ‘¶', title: 'Cuidador PediÃ¡trico', desc: 'Cuidados especializados para crianÃ§as com necessidades especiais ou em recuperaÃ§Ã£o.' },
-  { icon: 'ðŸŽ“', title: 'Treinamento de Estomia', desc: 'Nossos cuidadores sÃ£o capacitados para oferecer cuidado seguro e humanizado em estomias.' },
+  { icon: '👵', title: 'Cuidador de Idosos', desc: 'Assistência diária, controle de medicações, auxílio na mobilidade e higiene com amor e respeito.' },
+  { icon: '🩺', title: 'Técnico de Enfermagem', desc: 'Procedimentos complexos, sondas, curativos avançados — plantões de 12h ou 24h.' },
+  { icon: '❤️', title: 'Cuidados Paliativos', desc: 'Conforto e qualidade de vida para pacientes graves, com apoio emocional à família.' },
+  { icon: '🏥', title: 'Acompanhamento Hospitalar', desc: 'Não deixe quem você ama sozinho. Cuidadores e técnicos acompanham durante internações.' },
+  { icon: '👶', title: 'Cuidador Pediátrico', desc: 'Cuidados especializados para crianças com necessidades especiais ou em recuperação.' },
+  { icon: '🎓', title: 'Treinamento de Estomia', desc: 'Nossos cuidadores são capacitados para oferecer cuidado seguro e humanizado em estomias.' },
 ];
 
 const plans = [
-  { name: 'Plano Essencial', features: ['Cuidador 12h Diurno', 'RelatÃ³rio diÃ¡rio de saÃºde', 'Controle de medicaÃ§Ãµes', 'Suporte Ã  famÃ­lia'], price: 'Valores sob consulta' },
-  { name: 'Plano Confort', features: ['Cuidador 12h ou 24h', 'SupervisÃ£o de Enfermagem', 'RelatÃ³rios semanais', 'Visita mensal de enfermagem', 'Suporte prioritÃ¡rio'], price: 'Valores sob consulta' },
-  { name: 'Plano Ouro', features: ['Cuidador 24h completo', 'SupervisÃ£o de Enfermagem', 'Acompanhamento nutricional', 'RelatÃ³rios diÃ¡rios', 'Suporte 24h exclusivo'], price: 'Valores sob consulta' },
-  { name: 'Plano Excellence', features: ['Atendimento 24h completo', 'SupervisÃ£o de Enfermagem', 'Fisioterapia inclusa', 'GestÃ£o completa do cuidado', 'RelatÃ³rios diÃ¡rios detalhados', 'Suporte 24h para famÃ­lia'], price: 'Valores sob consulta' },
+  { name: 'Plano Essencial', features: ['Cuidador 12h Diurno', 'Relatório diário de saúde', 'Controle de medicações', 'Suporte à família'], price: 'Valores sob consulta' },
+  { name: 'Plano Confort', features: ['Cuidador 12h ou 24h', 'Supervisão de Enfermagem', 'Relatórios semanais', 'Visita mensal de enfermagem', 'Suporte prioritário'], price: 'Valores sob consulta' },
+  { name: 'Plano Ouro', features: ['Cuidador 24h completo', 'Supervisão de Enfermagem', 'Acompanhamento nutricional', 'Relatórios diários', 'Suporte 24h exclusivo'], price: 'Valores sob consulta' },
+  { name: 'Plano Excellence', features: ['Atendimento 24h completo', 'Supervisão de Enfermagem', 'Fisioterapia inclusa', 'Gestão completa do cuidado', 'Relatórios diários detalhados', 'Suporte 24h para família'], price: 'Valores sob consulta' },
 ];
 
 const testimonials = [
-  { name: 'Amigo de paciente', bairro: 'Vila Verde', text: 'Melhor agÃªncia de home care aqui da regiÃ£o. Eles atenderam um familiar e a recuperaÃ§Ã£o foi maravilhosa, obrigado Serenya pela ajuda e carinho.', stars: 5 },
-  { name: 'Rosecler Santos', bairro: 'SÃ£o Paulo - SP', text: 'Profissionais excelentes, muito cuidadosos, atenciosos e comprometidos. Demonstraram muita paciÃªncia para explicar todos os cuidados e nos deixaram muito mais tranquilos e seguros. Trataram minha avÃ³ com muito amor e carinho. Super recomendo!', stars: 5 },
-  { name: 'Sr. Carlos', bairro: 'SÃ£o Paulo - SP', text: 'ServiÃ§o de altÃ­ssima qualidade. A equipe veio atÃ© minha casa, explicou tudo direitinho e o atendimento foi feito com muito cuidado. ParabÃ©ns pelo trabalho!', stars: 5 },
+  { name: 'Família Silva', bairro: 'São Paulo - SP', text: 'Melhor agência de home care da região. Contratamos um cuidador para o meu pai e a dedicação foi maravilhosa. A equipe técnica da Serenya nos dá total segurança e tranquilidade.', stars: 5 },
+  { name: 'Márcia Oliveira', bairro: 'Guarulhos - SP', text: 'Profissionais excelentes, muito cuidadosos e atenciosos. Demonstraram muita paciência para explicar a rotina de medicações do meu avô e cuidam dele com muito amor e respeito. Super recomendo!', stars: 5 },
+  { name: 'Sr. Roberto', bairro: 'Santo André - SP', text: 'Serviço de altíssima qualidade. A supervisão de enfermagem visita minha casa regularmente, tudo muito organizado e focado no bem-estar do idoso. Parabéns pelo trabalho lindo!', stars: 5 },
 ];
 
-// Itens do Super Carrossel (Fotos Locais + VÃ­deo Destaque + Instagram Feed)
+// Itens do Super Carrossel (Fotos Locais + Vídeo Destaque + Instagram Feed)
 const mixedCarouselItems = [
   { type: 'image', src: '/nursing_team.png', alt: 'Equipe Serenya' },
   { type: 'image', src: '/elderly_care.png', alt: 'Cuidado com idosos' },
   { type: 'image', src: '/serenya.png', alt: 'Serenya Home Care' },
-  { type: 'instagram', src: 'https://www.instagram.com/p/DbkAD30ytpc' }, // VÃ­deo Destaque
+  { type: 'instagram', src: 'https://www.instagram.com/p/DbkAD30ytpc' }, // Vídeo Destaque
   { type: 'instagram', src: 'https://www.instagram.com/p/DbXwzaUFgHN' },
   { type: 'instagram', src: 'https://www.instagram.com/p/DayqxSZpeNZ' },
   { type: 'instagram', src: 'https://www.instagram.com/p/DaWmuuKy0Bn' },
@@ -48,20 +48,20 @@ export default function Home() {
       <Navbar />
       <Hero />
 
-      {/* â”€â”€ SOBRE â”€â”€ */}
+      {/* ── SOBRE ── */}
       <section id="sobre" className={`section section-alt`}>
         <div className="container">
           <div className="text-center">
             <div className="section-label">Quem Somos</div>
-            <h2 className="section-title">DedicaÃ§Ã£o e expertise<br />no cuidado domiciliar</h2>
+            <h2 className="section-title">Dedicação e expertise<br />no cuidado domiciliar</h2>
             <p className="section-sub" style={{ margin: '0 auto 50px' }}>
-              Somos uma agÃªncia especializada em assistÃªncia domiciliar humanizada, criada para oferecer cuidado, seguranÃ§a e qualidade de vida. Nosso objetivo Ã© proporcionar tranquilidade Ã s famÃ­lias, garantindo que seus entes queridos recebam cuidados profissionais com amor, respeito e dignidade.
+              Somos uma agência especializada em assistência domiciliar humanizada, criada para oferecer cuidado, segurança e qualidade de vida. Nosso objetivo é proporcionar tranquilidade às famílias, garantindo que seus entes queridos recebam cuidados profissionais com amor, respeito e dignidade.
             </p>
           </div>
         </div>
       </section>
 
-      {/* â”€â”€ SUPER CARROSSEL (FOTOS + VÃDEOS + INSTAGRAM) â”€â”€ */}
+      {/* ── SUPER CARROSSEL (FOTOS + VÍDEOS + INSTAGRAM) ── */}
       <section id="galeria-mista" className={`section section-alt`}>
         <div className="container text-center">
           <div className="section-label">Nossa Equipe</div>
@@ -73,11 +73,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SERVIÃ‡OS â”€â”€ */}
+      {/* ── SERVIÇOS ── */}
       <section id="servicos" className={`section section-alt`}>
         <div className="container text-center">
           <div className="section-label">O que oferecemos</div>
-          <h2 className="section-title">ServiÃ§os Especializados</h2>
+          <h2 className="section-title">Serviços Especializados</h2>
           <p className="section-sub">Cuidado profissional adaptado a cada paciente</p>
           <div className={styles.servicesGrid}>
             {services.map((s, i) => (
@@ -91,12 +91,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ PLANOS â”€â”€ */}
+      {/* ── PLANOS ── */}
       <section id="planos" className="section">
         <div className="container text-center">
           <div className="section-label">Planos Premium</div>
           <h2 className="section-title">Escolha o cuidado ideal</h2>
-          <p className="section-sub">Planos personalizados para cada necessidade. Solicite um orÃ§amento via WhatsApp.</p>
+          <p className="section-sub">Planos personalizados para cada necessidade. Solicite um orçamento via WhatsApp.</p>
           <div className={styles.plansGrid}>
             {plans.map((p, i) => (
               <div key={i} className={styles.planCard}>
@@ -106,7 +106,7 @@ export default function Home() {
                 </ul>
                 <div className={styles.planPrice}>{p.price}</div>
                 <Link href={WA_LINK} target="_blank" className="btn btn-outline btn-sm" style={{ marginTop: '20px', textAlign: 'center', justifyContent: 'center' }}>
-                  Solicitar OrÃ§amento
+                  Solicitar Orçamento
                 </Link>
               </div>
             ))}
@@ -114,51 +114,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ REDES SOCIAIS (igual Enfermeira Feridas) â”€â”€ */}
-            {/* 🌟 DEPOIMENTOS 🌟 */}
-      <section className="section" id="depoimentos">
-        <div className="container text-center">
-          <div className="section-label">O que dizem nossos pacientes</div>
-          <h2 className="section-title">Depoimentos</h2>
-          <p className="section-sub">A satisfação de nossos pacientes é nossa maior recompensa</p>
-          
-          <div className={styles.testimonialsGrid}>
-            {testimonials.map((t, i) => (
-              <div key={i} className={styles.testimonialCard}>
-                <div className={styles.testimonialStars}>
-                  {'★'.repeat(t.stars)}
-                </div>
-                <p className={styles.testimonialText}>"{t.text}"</p>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.testimonialAvatar}>{t.name.charAt(0)}</div>
-                  <div>
-                    <div className={styles.testimonialName}>{t.name}</div>
-                    <div className={styles.testimonialBairro}>📍 {t.bairro}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Chamada para Avaliação */}
-          <div style={{ marginTop: '40px', textAlign: 'center', background: 'rgba(74,140,82,0.05)', padding: '30px', borderRadius: '16px', border: '1px solid rgba(74,140,82,0.1)' }}>
-            <h3 style={{ fontSize: '20px', marginBottom: '10px', color: 'var(--text-primary)' }}>Já foi atendido por nós?</h3>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '20px' }}>
-              Sua opinião é muito importante. Ajude outras pessoas a encontrarem um cuidado humanizado e especializado.
-            </p>
-            <a 
-              href="https://g.page/r/CdR8uWI63QTYEBM/review" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="btn btn-green"
-              style={{ display: 'inline-flex', padding: '12px 24px', fontSize: '16px' }}
-            >
-              ⭐ Deixe sua avaliação no Google
-            </a>
-          </div>
-        </div>
-      </section>
-
+      {/* ── REDES SOCIAIS (igual Enfermeira Feridas) ── */}
       <section id="redes" className={`section section-alt ${styles.socialSection}`}>
         <div className="container">
           <div className="section-label">Redes Sociais</div>
@@ -209,11 +165,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ PARCERIA â”€â”€ */}
+      {/* ── PARCERIA ── */}
       <section id="parceria" className="section">
         <div className="container text-center">
-          <div className="section-label">ðŸ¤ Parceria Oficial</div>
-          <h2 className="section-title">Parceiras de ConfianÃ§a</h2>
+          <div className="section-label">🤝 Parceria Oficial</div>
+          <h2 className="section-title">Parceiras de Confiança</h2>
           <p className="section-sub">Trabalhamos juntas para oferecer cuidado completo ao seu familiar</p>
           <div className={styles.parceiraCard}>
             <div className={styles.parceiraLogoWrap}>
@@ -222,7 +178,7 @@ export default function Home() {
             <div>
               <h3 className={styles.parceiraName}>Enfermeira Feridas</h3>
               <p className={styles.parceiraDesc}>
-                Parceria oficial com especialistas em cuidados de feridas complexas, Ãºlceras e curativos avanÃ§ados. Quando seu paciente precisa de <strong>cuidados de feridas</strong> combinados com <strong>suporte domiciliar completo</strong>, as duas equipes trabalham juntas para garantir o melhor resultado.
+                Parceria oficial com especialistas em cuidados de feridas complexas, úlceras e curativos avançados. Quando seu paciente precisa de <strong>cuidados de feridas</strong> combinados com <strong>suporte domiciliar completo</strong>, as duas equipes trabalham juntas para garantir o melhor resultado.
               </p>
               <div className={styles.parceiraActions}>
                 <Link href="https://enfermeiraferidas.com.br/#parceiras" target="_blank" className="btn btn-outline btn-sm">
@@ -234,58 +190,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ CONTATO â”€â”€ */}
+      {/* ── CONTATO ── */}
       <section id="contato" className="section section-alt">
         <div className="container text-center">
           <div className="section-label">Contato</div>
-          <h2 className="section-title">Agende sua AvaliaÃ§Ã£o</h2>
-          <p className="section-sub">Atendemos Alto TietÃª, Guarulhos, ABC e Grande SÃ£o Paulo</p>
+          <h2 className="section-title">Agende sua Avaliação</h2>
+          <p className="section-sub">Atendemos Alto Tietê, Guarulhos, ABC e Grande São Paulo</p>
           <div className={styles.contactGrid}>
             <div className={styles.contactCard}>
-              <div className={styles.contactIcon}>ðŸ’¬</div>
+              <div className={styles.contactIcon}>💬</div>
               <h3>WhatsApp</h3>
-              <p>Resposta em atÃ© 1 hora</p>
+              <p>Resposta em até 1 hora</p>
               <Link href={WA_LINK} target="_blank" className="btn btn-wa btn-sm">(11) 97499-5342</Link>
             </div>
             <div className={styles.contactCard}>
-              <div className={styles.contactIcon}>ðŸ“</div>
-              <h3>Ãrea de Atendimento</h3>
-              <p>Alto TietÃª, Guarulhos, ABC e toda Grande SÃ£o Paulo</p>
+              <div className={styles.contactIcon}>📍</div>
+              <h3>Área de Atendimento</h3>
+              <p>Alto Tietê, Guarulhos, ABC e toda Grande São Paulo</p>
             </div>
             <div className={styles.contactCard}>
-              <div className={styles.contactIcon}>â°</div>
-              <h3>HorÃ¡rios</h3>
-              <p>Segunda a SÃ¡bado, 7h Ã s 20h. PlantÃµes 24h disponÃ­veis.</p>
+              <div className={styles.contactIcon}>⏰</div>
+              <h3>Horários</h3>
+              <p>Segunda a Sábado, 7h às 20h. Plantões 24h disponíveis.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* â”€â”€ TRABALHE CONOSCO â”€â”€ */}
+      {/* ── TRABALHE CONOSCO ── */}
       <section id="trabalhe-conosco" className="section">
         <div className="container text-center">
-          <div className="section-label">FaÃ§a parte da equipe</div>
+          <div className="section-label">Faça parte da equipe</div>
           <h2 className="section-title">Trabalhe Conosco</h2>
           <p className="section-sub" style={{ maxWidth: '600px', margin: '0 auto 10px' }}>
-            VocÃª Ã© Cuidador(a), TÃ©cnico(a) de Enfermagem ou Enfermeiro(a) e ama cuidar de pessoas com humanizaÃ§Ã£o e respeito? Junte-se Ã  famÃ­lia Serenya!
+            Você é Cuidador(a), Técnico(a) de Enfermagem ou Enfermeiro(a) e ama cuidar de pessoas com humanização e respeito? Junte-se à família Serenya!
           </p>
           <RecruitmentForm />
         </div>
       </section>
 
-      {/* â”€â”€ FOOTER â”€â”€ */}
+      {/* ── FOOTER ── */}
       <footer className={styles.footer}>
         <div className="container">
           <div className={styles.footerGrid}>
             <div className={styles.footerCol}>
               <h4>SERENYA HOME CARE</h4>
-              <p>Cuidamos de vidas, acolhemos histÃ³rias.</p>
+              <p>Cuidamos de vidas, acolhemos histórias.</p>
               <p style={{ marginTop: '12px' }}>Email: cuidadosserenya@gmail.com</p>
             </div>
             <div className={styles.footerCol}>
-              <h4>ServiÃ§os</h4>
+              <h4>Serviços</h4>
               <p>Cuidador de Idosos</p>
-              <p>TÃ©cnico de Enfermagem</p>
+              <p>Técnico de Enfermagem</p>
               <p>Cuidados Paliativos</p>
               <p>Acompanhamento Hospitalar</p>
             </div>
@@ -296,7 +252,7 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.footerBottom}>
-            <p>Â© {new Date().getFullYear()} Serenya Home Care. Todos os direitos reservados.</p>
+            <p>© {new Date().getFullYear()} Serenya Home Care. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
@@ -309,4 +265,3 @@ export default function Home() {
     </main>
   );
 }
-
